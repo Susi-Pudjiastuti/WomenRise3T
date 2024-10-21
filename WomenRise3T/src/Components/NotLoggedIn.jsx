@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Container, Card, Row, Col } from 'react-bootstrap';
 
 
-const MentoringBeasiswaComponent = () => {
+const NotLoggedIn = () => {
     return (
         <Container fluid>
             <Row className="justify-content-center">
@@ -29,5 +29,6 @@ const MentoringBeasiswaComponent = () => {
     );
 };
 
-export default MentoringBeasiswaComponent;
+export default NotLoggedIn;
+
 
