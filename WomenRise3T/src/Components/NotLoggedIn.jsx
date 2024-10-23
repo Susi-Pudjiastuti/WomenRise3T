@@ -4,7 +4,7 @@ import { Button, Container, Card, Row, Col } from 'react-bootstrap';
 
 const NotLoggedIn = () => {
     return (
-        <Container fluid>
+        <Container fluid style={{ fontFamily: 'Inter, Sans-serif' }}>
             <Row className="justify-content-center">
                 <Col xs={12} className="p-4" style={{ backgroundColor: '#F6FBFD' }}>
                     <Card className="text-center border-0 m-4" style={{ backgroundColor: '#fff' }}>
@@ -12,7 +12,7 @@ const NotLoggedIn = () => {
                             <Card.Title style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#004987' }}>
                                 Mentoring Beasiswa Perempuan 3T
                             </Card.Title>
-                            <Card.Text>
+                            <Card.Text >
                                 Bergabunglah dengan sesi mentoring khusus untuk Perempuan wilayah 3T!<br />
                                 Dapatkan bimbingan dari mentor berpengalaman dan wujudkan impianmu meraih beasiswa.<br />
                                 Daftar sekarang, kesempatan terbatas!
