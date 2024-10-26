@@ -53,9 +53,9 @@ function Tentang() {
                 <Tab eventKey="misi" title="Misi" className='tab-style'>
                     <p className="button-style-text fw-semibold">Misi</p>
                     <ul>
-                        <li>Mentorship untuk Pengembangan Diri: Menyediakan program mentorship yang relevan, di mana mentor dapat membantu perempuan dari wilayah 3T dalam mengembangkan keterampilan akademis, profesional, dan personal melalui bimbingan yang tepat dan inspiratif.</li>
-                        <li>Meningkatkan Motivasi dan Kepercayaan Diri: Melalui fitur motivasi yang dipersonalisasi, WomenRise3T bertujuan untuk membangkitkan semangat dan motivasi perempuan untuk terus berjuang mencapai cita-cita mereka, meskipun menghadapi berbagai tantangan.</li>
-                        <li>Memfasilitasi Jaringan Kolaborasi: Membangun platform yang memungkinkan mentor dan mentee terhubung secara mudah, menciptakan komunitas yang saling mendukung, di mana para perempuan dapat belajar dan bertumbuh bersama.</li>
+                        <li>Menyediakan program mentorship yang relevan, di mana mentor dapat membantu perempuan dari wilayah 3T dalam mengembangkan keterampilan akademis, profesional, dan personal melalui bimbingan yang tepat dan inspiratif.</li>
+                        <li>Melalui fitur motivasi yang dipersonalisasi, WomenRise3T bertujuan untuk membangkitkan semangat dan motivasi perempuan untuk terus berjuang mencapai cita-cita mereka, meskipun menghadapi berbagai tantangan.</li>
+                        <li>Membangun platform yang memungkinkan mentor dan mentee terhubung secara mudah, menciptakan komunitas yang saling mendukung, di mana para perempuan dapat belajar dan bertumbuh bersama.</li>
                         <li>Menghapus Kesenjangan Gender dan Geografis: Mendorong penghapusan kesenjangan kesempatan pendidikan dan karier antara perempuan di wilayah 3T dan wilayah yang lebih maju, melalui akses ke sumber daya, jaringan, dan pengetahuan.</li>
                     </ul>
                 </Tab>

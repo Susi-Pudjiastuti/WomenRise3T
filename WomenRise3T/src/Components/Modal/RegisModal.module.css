@@ -1,13 +1,3 @@
-body.active-modal {
-    overflow-y: hidden;
-}
-
-.btn-modal {
-    padding: 10px 20px;
-    display: block;
-    margin: 100px auto 0;
-    font-size: 18px;
-}
 
 .modal, .overlay {
     width: 100vw;
@@ -24,20 +14,23 @@ body.active-modal {
 }
 .modalContent {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
     background: white;
-    padding: 14px 28px;
+    padding: 40px 56px;
     border-radius: 3px;
-    max-width: 600px;
-    min-width: 300px;
+    max-width: 1000px;
+    min-width: 750px;
+    height: 80%;
+    overflow: auto;
 }
 
-.close-modal {
+.closeModal {
     position: absolute;
     top: 10px;
     right: 10px;
     padding: 5px 7px;
 }
+

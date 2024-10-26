@@ -1,47 +1,117 @@
-import logo from '../../assets/logo/Logo WomenRise3T.svg'
-import styles from './RegisModal.module.css'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { useState } from "react";
+import logo from "../../assets/logo/Logo WomenRise3T.svg";
+import styles from "./RegisModal.module.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import cross from "../../assets/icon/close.svg"
+import Swal from 'sweetalert2'
 
 function RegisModal() {
+  // untuk boleaan state modal
+  const [modal, setModal] = useState(false);
+
+  const handleModal = () => {
+    //set agar modal menjadi kebalikannya ketika diclick
+    setModal(!modal);
+  };
+
+  // konfirmasi
+  const handleConfirm = (e) => {
+    e.preventDefault()
+    Swal.fire({
+      title: "Booking Berhasil!",
+      text: "Anda telah terdaftar untuk sesi mentoring. Tunggu maksimal 1 x 24 jam anda akan  di-Invite ke WhatsApp Grup.",
+      icon: "success"
+    });
+    setModal(!modal)
+  }
+
   return (
     <div>
-      {/* tombol daftar sekarang dari halaman detail mentor */}
-        <button>Daftar sekarang</button>
+      {/* tombol "daftar sekarang" dari halaman detail mentor */}
+      <button onClick={handleModal}>Daftar sekarang</button>
 
-      <div className={styles.modal}>
-          <div className={styles.overlay}></div>
+      {/* Jika modal bernilai true, tampilkan modal */}
+      {modal && (
+        <div className={styles.modal}>
+          <div className={styles.overlay} onClick={handleModal}></div>
 
           <div className={styles.modalContent}>
-            <h3 class="mb-3 text-center vesper-libre-bold pt-2"><img src={logo} width="40" height="auto"/> WomenRise3T</h3>
-            <p> Mohon registrasi ulang data anda untuk melakukan booking mentoring. </p>
+            <h3 class="mb-3 text-center vesper-libre-bold pt-2">
+              <img src={logo} width="40" height="auto" /> WomenRise3T
+            </h3>
+            <p className="text-center">
+              
+              Mohon registrasi ulang data anda untuk melakukan booking
+              mentoring.
+            </p>
 
-            <Form >
+            <Form>
+              <Form.Group className="mb-3" controlId="inputNama">
+                <Form.Label>Nama</Form.Label>
+                <Form.Control type="text" />
+              </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3" controlId="inputEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="example@gmail.com" />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
+                <Form.Control type="email"/>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3" controlId="inputPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password"/>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              
+              <Form.Group className="mb-3" controlId="inputNomor">
+                <Form.Label>Nomor Handphone (WA)</Form.Label>
+                <Form.Control type="text" />
               </Form.Group>
-              <Button variant="primary" type="submit" className='btn btn-primary w-100 border-0' style={{background: '#004987'}}>
+
+              <Form.Group className="mb-3" controlId="inputAlasan">
+                <Form.Label>Alasan anda mendaftar mentorship ini</Form.Label>
+                <Form.Control type="text" as='textarea' />
+              </Form.Group>
+
+              {/* tambah value nanti untuk display data dari api */}
+              <Form.Group className="mb-3" controlId="mentor">
+                <Form.Label>Mentor</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Disabled input"
+                  aria-label="Disabled input example"
+                  disabled
+                  readOnly
+                />
+              </Form.Group>
+
+              
+              <Form.Group className="mb-4" controlId="mentorship">
+                <Form.Label>Kelas Mentorship</Form.Label>
+                <Form.Select aria-label="Default select example" className="mb-3">
+                  <option>Pilih jadwal mentorship</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+              </Form.Group>
+
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn btn-primary w-100 border-0"
+                style={{ background: "#004987" }}
+                onClick={handleConfirm}
+              >
                 Book Jadwal Mentor
               </Button>
             </Form>
-            
+
+            <img src={cross} onClick={handleModal} className={styles.closeModal} style={{cursor: "pointer", width: "40px"}}/>
           </div>
-      </div>
-       
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default RegisModal
+export default RegisModal;
