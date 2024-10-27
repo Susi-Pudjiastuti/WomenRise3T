@@ -13,15 +13,14 @@ import { MentorContext } from "../Context/MentorContext";
 
 
 function Mentor() {
-    const { searchMentor } = useContext(MentorContext)
-    console.log(searchMentor)
-
-
-    const { isPending: loading, error, data: mentors } = useQuery({
-        queryKey: ["mentor", searchMentor],
-        queryFn: () => { return fetchMentors({ searchMentor }) }
+    const { searchMentor, setDataMentor, page } = useContext(MentorContext)
+    const { isPending: loading, error, data } = useQuery({
+        queryKey: ["mentor", searchMentor, page],
+        queryFn: () => { return fetchMentors({ searchMentor, page }) }
     })
-    console.log(mentors)
+
+    const mentors = data?.data
+    setDataMentor(data)
 
     return (
         <>
