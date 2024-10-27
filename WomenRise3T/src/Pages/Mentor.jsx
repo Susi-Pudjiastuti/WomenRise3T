@@ -1,5 +1,5 @@
 import React from "react"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FilterMentorLg from "../Components/Mentor/FilterMentorLg";
 import FilterMentorSm from "../Components/Mentor/FilterMentorSm";
 import Pagination from "../Components/Mentor/Pagination";
@@ -7,15 +7,19 @@ import CardSmall from "../Components/Mentor/CardSmall";
 import CardLarge from "../Components/Mentor/CardLarge";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMentors } from "../utils/fetch";
+import { MentorContext } from "../Context/MentorContext";
 
 
 
 
 function Mentor() {
+    const { searchMentor } = useContext(MentorContext)
+    console.log(searchMentor)
+
 
     const { isPending: loading, error, data: mentors } = useQuery({
-        queryKey: ["mentor"],
-        queryFn: () => { return fetchMentors() }
+        queryKey: ["mentor", searchMentor],
+        queryFn: () => { return fetchMentors({ searchMentor }) }
     })
     console.log(mentors)
 

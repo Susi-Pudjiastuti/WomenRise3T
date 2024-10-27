@@ -13,6 +13,7 @@ import Motivation from './Pages/Motivation';
 import Profile from './Pages/Profile';
 import LandingPage from './Pages/LandingPage';
 import Mentor from './Pages/Mentor';
+import MentorContextProvider from './Context/MentorContext';
 
 
 
@@ -53,7 +54,9 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <MentorContextProvider>
+          <RouterProvider router={router} />
+        </MentorContextProvider>
       </QueryClientProvider>
     </>
   )
