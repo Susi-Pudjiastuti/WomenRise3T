@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import Girl from '../assets/Mask-group-1.webp';
 import Logo from '../assets/Logo WomenRise3T.svg';
+import { GoUpload } from "react-icons/go";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -175,7 +176,7 @@ const Signup = () => {
                                     border: "1.5px dashed #004987",
                                     padding: "20px",
                                     textAlign: "center",
-                                    marginBottom: "20px"
+                                    marginBottom: "20px",
                                 }}
                             >
                                 <input {...getInputProps()} />
@@ -202,11 +203,12 @@ const Signup = () => {
                                         </p>
                                     </div>
                                 ) : (
-
-                                    <p>Drag and Drop or choose your file for upload <br />
-                                        <small>JPG, PNG, or SVG</small>
-                                    </p>
-
+                                    <div>
+                                        <GoUpload />
+                                        <p> Drag and Drop or <a style={{ color: "blue", cursor: "pointer" }}>choose your file</a> for upload <br />
+                                            <small>JPG, PNG, or SVG</small>
+                                        </p>
+                                    </div>
                                 )}
                             </div>
                         </Form.Group>

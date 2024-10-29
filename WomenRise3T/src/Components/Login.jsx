@@ -9,8 +9,7 @@ import Logo from '../assets/Logo WomenRise3T.svg';
 
 const Login = () => {
     // State untuk input form
-    //const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
@@ -22,18 +21,17 @@ const Login = () => {
         e.preventDefault();
 
         // Simple form validation
-        // if (!email || !password) {
-        //     setErrorMessage('Email dan Password harus diisi!');
-        //     return;
-        // }
+        if (!email || !password) {
+            setErrorMessage('Email dan Password harus diisi!');
+            return;
+        }
 
         setLoading(true); // Set loading true saat request dimulai
 
         try {
             // mengirim data login ke backend pakai axios
-            const response = await axios.post('https://historic-joelie-hellodayy-312b44e9.koyeb.app/auth/login', {
-                //email: email,
-                username: username,
+            const response = await axios.post('https:/api/auth/login', {
+                email: email,
                 password: password,
             });
 
@@ -76,25 +74,18 @@ const Login = () => {
                     <Form style={{ fontFamily: 'Inter, Sans-serif', fontSize: '0.9rem' }} onSubmit={handleSubmit}>
                         <Form.Group className="mb-3 w-100">
                             <Form.Label>Email</Form.Label>
-                            {/* <Form.Control
+                            <Form.Control
                                 type="email"
                                 placeholder="masukkan email anda"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                disabled={loading} // Disable input saat loading
-                            /> */}
-                            <Form.Control
-                                type="text"
-                                placeholder="masukkan email anda"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
                                 disabled={loading} // Disable input saat loading
                             />
                         </Form.Group>
                         <Form.Group className="mb-3 w-100">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
-                                type="password"
+                                type="text"
                                 placeholder="masukkan password anda"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -114,11 +105,11 @@ const Login = () => {
                     </Form>
 
                     <div className="mt-3 text-center">
-                        <span>Belum punya akun? <a href="#" >Sign up</a></span>
+                        <span>Belum punya akun? <a>Sign up</a></span>
                     </div>
                 </Col>
             </Row>
-        </Container>
+        </Container >
     );
 };
 
