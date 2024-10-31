@@ -16,7 +16,7 @@ import Mentor from './Pages/Mentor';
 import MentorContextProvider from './Context/MentorContext';
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
-import { UserProvider } from './Context/UserContext'; import MentorContextProvider from './Context/MentorContext';
+import { UserProvider } from './Context/UserContext';
 
 
 
