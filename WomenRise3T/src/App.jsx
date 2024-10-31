@@ -11,7 +11,9 @@ import Motivation from './Pages/Motivation';
 import Profile from './Pages/Profile';
 import LandingPage from './Pages/LandingPage';
 import Mentor from './Pages/Mentor';
-
+import Login from './Components/Login'
+import SignUp from './Components/SignUp'
+import { UserProvider } from './Context/UserContext';
 
 
 function App() {
@@ -53,13 +55,23 @@ function App() {
       path: "/motivation",
       element: <Motivation />,
     },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
+    },
 
   ]);
 
 
   return (
     <>
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </>
   )
 }

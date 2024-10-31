@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Girl from '../assets/Mask-group-1.webp';
 import Logo from '../assets/Logo WomenRise3T.svg';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -105,7 +106,7 @@ const Login = () => {
                     </Form>
 
                     <div className="mt-3 text-center">
-                        <span>Belum punya akun? <a>Sign up</a></span>
+                        <span>Belum punya akun? <Link to="/signup">Sign up</Link></span>
                     </div>
                 </Col>
             </Row>
