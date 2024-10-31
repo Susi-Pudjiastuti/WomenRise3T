@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { fetchMentorsById } from "../utils/fetch";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../Components/Mentor/Loading";
 
 
 
@@ -16,6 +17,7 @@ function DetailMentor() {
         queryFn: () => { return fetchMentorsById({ id }) }
     })
     const mentors = data?.data
+    if (loading) return <Loading />
 
     return (
         <>
