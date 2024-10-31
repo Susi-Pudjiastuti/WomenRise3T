@@ -14,6 +14,9 @@ import Profile from './Pages/Profile';
 import LandingPage from './Pages/LandingPage';
 import Mentor from './Pages/Mentor';
 import MentorContextProvider from './Context/MentorContext';
+import Login from './Components/Login'
+import SignUp from './Components/SignUp'
+import { UserProvider } from './Context/UserContext';
 
 
 
@@ -48,6 +51,15 @@ function App() {
       path: "/mentor",
       element: <Mentor />,
     },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
+    },
+
   ]);
 
 
@@ -55,9 +67,12 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <MentorContextProvider>
-          <RouterProvider router={router} />
+          <UserProvider>
+            <RouterProvider router={router} />
+          </UserProvider>
         </MentorContextProvider>
       </QueryClientProvider>
+
     </>
   )
 }

@@ -4,6 +4,8 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import Girl from '../assets/Mask-group-1.webp';
 import Logo from '../assets/Logo WomenRise3T.svg';
+import { GoUpload } from "react-icons/go";
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ const Signup = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        fileUrl: "", // URL file setelah upload ke Cloudinary
+        kartuIdentitas: "", // URL file setelah upload ke Cloudinary
     });
 
     const [errors, setErrors] = useState({});
@@ -44,8 +46,8 @@ const Signup = () => {
                 "https://api.cloudinary.com/v1_1/dsdzpyznj/image/upload", // URL API Cloudinary
                 formData
             );
-            const fileUrl = response.data.secure_url; // URL gambar dari Cloudinary
-            setFormData((prevData) => ({ ...prevData, fileUrl })); // Simpan URL ke state
+            const kartuIdentitas = response.data.secure_url; // URL gambar dari Cloudinary
+            setFormData((prevData) => ({ ...prevData, kartuIdentitas })); // Simpan URL ke state
         } catch (error) {
             console.error("Upload ke Cloudinary gagal", error);
         } finally {
@@ -73,7 +75,7 @@ const Signup = () => {
             asalDaerah: formData.asalDaerah,
             email: formData.email,
             password: formData.password,
-            fileUrl: formData.fileUrl, // URL gambar yang sudah diupload ke Cloudinary
+            kartuIdentitas: formData.kartuIdentitas, // URL gambar yang sudah diupload ke Cloudinary
         };
 
         try {
@@ -175,7 +177,7 @@ const Signup = () => {
                                     border: "1.5px dashed #004987",
                                     padding: "20px",
                                     textAlign: "center",
-                                    marginBottom: "20px"
+                                    marginBottom: "20px",
                                 }}
                             >
                                 <input {...getInputProps()} />
@@ -187,28 +189,29 @@ const Signup = () => {
                                         </Spinner>
                                         <p>Uploading file...</p>
                                     </div>
-                                ) : formData.fileUrl ? (
-                                    // Jika file berhasil diupload, tampilkan link file
+                                ) : (
                                     <div>
-                                        <p>
-                                            File berhasil diupload:{" "}
-                                            <a
-                                                href={formData.fileUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Lihat File
-                                            </a>
+                                        <GoUpload />
+                                        <p> Drag and Drop or <a style={{ color: "blue", cursor: "pointer" }}>choose your file</a> for upload <br />
+                                            <small>JPG, PNG, or SVG</small>
                                         </p>
                                     </div>
-                                ) : (
+                                )
 
-                                    <p>Drag and Drop or choose your file for upload <br />
-                                        <small>JPG, PNG, or SVG</small>
-                                    </p>
-
-                                )}
+                                }
                             </div>
+                            {formData.kartuIdentitas && (
+                                <p>
+                                    File berhasil diupload:{" "}
+                                    <a
+                                        href={formData.kartuIdentitas}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Lihat File
+                                    </a>
+                                </p>
+                            )}
                         </Form.Group>
 
                         {/* Button Submit */}
@@ -218,7 +221,7 @@ const Signup = () => {
                     </Form>
 
                     <div className="mt-3 text-center">
-                        <span>Sudah punya akun? <a href="#" >Log in</a></span>
+                        <span>Belum punya akun? <Link to="/login">Log In</Link></span>
                     </div>
                 </Col>
             </Row>
