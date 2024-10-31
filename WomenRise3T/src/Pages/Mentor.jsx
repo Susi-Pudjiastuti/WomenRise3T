@@ -13,6 +13,7 @@ import NotFound from "../Components/Mentor/NotFound";
 
 function Mentor() {
     const { searchMentor, setDataMentor, page } = useContext(MentorContext)
+    console.log(searchMentor)
     const { isPending: loading, error, data } = useQuery({
         queryKey: ["mentor", searchMentor, page],
         queryFn: () => { return fetchMentors({ searchMentor, page }) }

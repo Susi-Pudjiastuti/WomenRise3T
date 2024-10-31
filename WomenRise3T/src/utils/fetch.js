@@ -19,6 +19,8 @@ export async function fetchMentors({ searchMentor, page }) {
       url: endpoint,
       method: "GET",
     });
+
+    console.log(response);
     return response.data;
   } catch (error) {
     if (error.response) {
