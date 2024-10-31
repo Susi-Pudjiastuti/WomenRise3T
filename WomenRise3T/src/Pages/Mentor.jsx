@@ -1,5 +1,4 @@
-import React from "react"
-import { useState, useContext } from 'react';
+import React, { useEffect, useContext } from "react"
 import FilterMentorLg from "../Components/Mentor/FilterMentorLg";
 import FilterMentorSm from "../Components/Mentor/FilterMentorSm";
 import Pagination from "../Components/Mentor/Pagination";
@@ -8,9 +7,9 @@ import CardLarge from "../Components/Mentor/CardLarge";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMentors } from "../utils/fetch";
 import { MentorContext } from "../Context/MentorContext";
-
-
-
+import Loading from "../Components/Mentor/Loading";
+import { useNavigate } from "react-router-dom";
+import NotFound from "../Components/Mentor/NotFound";
 
 function Mentor() {
     const { searchMentor, setDataMentor, page } = useContext(MentorContext)
@@ -20,7 +19,9 @@ function Mentor() {
     })
 
     const mentors = data?.data
-    setDataMentor(data)
+    useEffect(() => { setDataMentor(data) }, [data])
+
+    if (loading) return <Loading />
 
     return (
         <>
@@ -43,17 +44,19 @@ function Mentor() {
                             <section className="mentor">
                                 {/* <!-- layar besar --> */}
                                 <div id="card-large">
-                                    {mentors?.map((mentor, index) => <CardLarge mentor={mentor} key={index} />)}
+                                    {mentors?.map((mentor, index) => <CardLarge mentor={mentor} key={index} loading={loading} />)}
                                 </div>
                             </section>
 
                             {/* <!-- layar kecil--> */}
                             <div className="container-fluid">
                                 <div className="row g-3" id="card-small">
+
                                     {mentors?.map((mentor, index) => <CardSmall mentor={mentor} key={index} />)}
                                 </div>
                             </div>
-                            <Pagination />
+                            {mentors?.length === undefined ? <NotFound /> : <Pagination />}
+                            {/* <Pagination /> */}
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ const SearchMentor = () => {
   return (
     <>
       <form onSubmit={handleSearch} className="d-flex ">
-        <input onChange={(e) => { setSearch(e.target.value) }} type="search" className="form-control" placeholder="Nama atau Universitas" autoFocus autoComplete="off" />
+        <input onChange={(e) => { setSearch(e.target.value) }} type="search" className="form-control" placeholder="Nama atau Universitas" autoComplete="off" />
         <button className="input-group-text" id="basic-addon1">
           <i className="bi bi-search"></i>
         </button>

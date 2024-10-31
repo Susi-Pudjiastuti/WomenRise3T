@@ -31,3 +31,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.text-justify {
+  text-align: justify;
+}

@@ -1,6 +1,7 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
-// fetch mentor
+// fetch mentor by search and page
 export async function fetchMentors({ searchMentor, page }) {
   let endpoint = "http://localhost:3000/mentors?all=true";
 
@@ -13,10 +14,44 @@ export async function fetchMentors({ searchMentor, page }) {
   }
 
   // fetch
-  const { data } = await axios({
-    url: endpoint,
-    method: "GET",
-  });
+  try {
+    const response = await axios({
+      url: endpoint,
+      method: "GET",
+    });
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Something went wrong! ${error.response.data.message}`,
+      });
+    }
+    throw error;
+  }
+}
 
-  return data;
+// fetch mentor for use context
+export async function fetchMentorsById({ id }) {
+  try {
+    let endpoint = `http://localhost:3000/mentors/${id}`;
+
+    // fetch
+    const response = await axios({
+      url: endpoint,
+      method: "GET",
+    });
+
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Something went wrong! ${error.response.data.message}`,
+      });
+    }
+    throw error;
+  }
 }

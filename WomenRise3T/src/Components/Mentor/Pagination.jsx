@@ -5,7 +5,6 @@ import { useContext } from 'react'
 const Pagination = () => {
   const { page, setPage, dataMentor } = useContext(MentorContext)
   const currentPage = dataMentor?.pagination?.currentPage
-  console.log(dataMentor)
   return (
     <>
       <div className="my-5 d-flex gap-2 justify-content-center align-items-center" id="button-bottom">
