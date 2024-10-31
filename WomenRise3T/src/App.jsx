@@ -1,21 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import AboutUs from './Pages/AboutUs';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Aktivitas from './Pages/Aktivitas';
 import DetailMentor from './Pages/DetailMentor';
 import Motivation from './Pages/Motivation';
 import Profile from './Pages/Profile';
 import LandingPage from './Pages/LandingPage';
 import Mentor from './Pages/Mentor';
+import MentorContextProvider from './Context/MentorContext';
 
 
 
 function App() {
-
+  const queryClient = new QueryClient();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -30,7 +33,7 @@ function App() {
       element: <Aktivitas />,
     },
     {
-      path: "/detailmentor",
+      path: "/detail/:id",
       element: <DetailMentor />,
     },
     {
@@ -45,21 +48,16 @@ function App() {
       path: "/mentor",
       element: <Mentor />,
     },
-    {
-      path: "/detailmentor",
-      element: <DetailMentor />,
-    },
-    {
-      path: "/motivation",
-      element: <Motivation />,
-    },
-
   ]);
 
 
   return (
     <>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <MentorContextProvider>
+          <RouterProvider router={router} />
+        </MentorContextProvider>
+      </QueryClientProvider>
     </>
   )
 }
