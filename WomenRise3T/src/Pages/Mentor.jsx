@@ -8,21 +8,19 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMentors } from "../utils/fetch";
 import { MentorContext } from "../Context/MentorContext";
 import Loading from "../Components/Mentor/Loading";
-import { useNavigate } from "react-router-dom";
 import NotFound from "../Components/Mentor/NotFound";
+import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
 
 function Mentor() {
-    const { searchMentor, setDataMentor, page } = useContext(MentorContext)
-    console.log(searchMentor)
-    const { isPending: loading, error, data } = useQuery({
-        queryKey: ["mentor", searchMentor, page],
-        queryFn: () => { return fetchMentors({ searchMentor, page }) }
+    const { searchMentor, setDataMentor, studi, page, daerah } = useContext(MentorContext)
+    const { isPending: loading, data } = useQuery({
+        queryKey: ["mentor", searchMentor, page, studi, daerah],
+        queryFn: () => { return fetchMentors({ searchMentor, page, studi, daerah }) }
     })
 
     const mentors = data?.data
     useEffect(() => { setDataMentor(data) }, [data])
-
-    if (loading) return <Loading />
 
     return (
         <>
@@ -45,19 +43,17 @@ function Mentor() {
                             <section className="mentor">
                                 {/* <!-- layar besar --> */}
                                 <div id="card-large">
-                                    {mentors?.map((mentor, index) => <CardLarge mentor={mentor} key={index} loading={loading} />)}
+                                    {mentors?.map((mentor, index) => <CardLarge mentor={mentor} key={index} />)}
                                 </div>
                             </section>
 
                             {/* <!-- layar kecil--> */}
                             <div className="container-fluid">
                                 <div className="row g-3" id="card-small">
-
                                     {mentors?.map((mentor, index) => <CardSmall mentor={mentor} key={index} />)}
                                 </div>
                             </div>
-                            {mentors?.length === undefined ? <NotFound /> : <Pagination />}
-                            {/* <Pagination /> */}
+                            {mentors?.length === undefined ? loading ? <Skeleton count={3} height={180} /> : <NotFound /> : mentors?.length < 4 ? "" : <Pagination />}
                         </div>
                     </div>
                 </div>
