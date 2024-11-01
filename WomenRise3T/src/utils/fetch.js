@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 // fetch mentor by search and page
-export async function fetchMentors({ searchMentor, page }) {
+export async function fetchMentors({ searchMentor, page, studi, daerah }) {
   let endpoint = "http://localhost:3000/mentors?all=true";
 
   if (searchMentor) {
@@ -13,6 +13,14 @@ export async function fetchMentors({ searchMentor, page }) {
     endpoint += `&page=${page}`;
   }
 
+  if (studi) {
+    endpoint += `&studi=${studi}`;
+  }
+
+    if (daerah) {
+    endpoint += `&daerah=${daerah}`;
+  }
+
   // fetch
   try {
     const response = await axios({
@@ -20,7 +28,6 @@ export async function fetchMentors({ searchMentor, page }) {
       method: "GET",
     });
 
-    console.log(response);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -34,7 +41,7 @@ export async function fetchMentors({ searchMentor, page }) {
   }
 }
 
-// fetch mentor for use context
+// fetch detail mentor by id
 export async function fetchMentorsById({ id }) {
   try {
     let endpoint = `http://localhost:3000/mentors/${id}`;
@@ -57,3 +64,6 @@ export async function fetchMentorsById({ id }) {
     throw error;
   }
 }
+
+
+
