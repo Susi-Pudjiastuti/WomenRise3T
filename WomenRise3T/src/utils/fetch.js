@@ -3,7 +3,8 @@ import Swal from "sweetalert2";
 
 // fetch mentor by search and page
 export async function fetchMentors({ searchMentor, page, studi, daerah }) {
-  let endpoint = "http://localhost:3000/mentors?all=true";
+  let endpoint =
+    "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentors?all=true";
 
   if (searchMentor) {
     endpoint += `&search=${searchMentor}`;
@@ -17,7 +18,7 @@ export async function fetchMentors({ searchMentor, page, studi, daerah }) {
     endpoint += `&studi=${studi}`;
   }
 
-    if (daerah) {
+  if (daerah) {
     endpoint += `&daerah=${daerah}`;
   }
 
@@ -44,7 +45,7 @@ export async function fetchMentors({ searchMentor, page, studi, daerah }) {
 // fetch detail mentor by id
 export async function fetchMentorsById({ id }) {
   try {
-    let endpoint = `http://localhost:3000/mentors/${id}`;
+    let endpoint = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentors/${id}`;
 
     // fetch
     const response = await axios({
@@ -64,6 +65,3 @@ export async function fetchMentorsById({ id }) {
     throw error;
   }
 }
-
-
-
