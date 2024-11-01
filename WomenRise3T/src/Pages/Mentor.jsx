@@ -7,7 +7,6 @@ import CardLarge from "../Components/Mentor/CardLarge";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMentors } from "../utils/fetch";
 import { MentorContext } from "../Context/MentorContext";
-import Loading from "../Components/Mentor/Loading";
 import NotFound from "../Components/Mentor/NotFound";
 import 'react-loading-skeleton/dist/skeleton.css'
 import Skeleton from "react-loading-skeleton";
@@ -53,7 +52,8 @@ function Mentor() {
                                     {mentors?.map((mentor, index) => <CardSmall mentor={mentor} key={index} />)}
                                 </div>
                             </div>
-                            {mentors?.length === undefined ? loading ? <Skeleton count={3} height={180} /> : <NotFound /> : mentors?.length < 4 ? "" : <Pagination />}
+                            {/* {mentors?.length === undefined ? loading ? <Skeleton count={3} height={180} /> : <NotFound /> : mentors?.length < 4 ? "" : <Pagination />} */}
+                            {mentors?.length === undefined ? loading ? <Skeleton count={3} height={180} /> : <NotFound /> : <Pagination />}
                         </div>
                     </div>
                 </div>

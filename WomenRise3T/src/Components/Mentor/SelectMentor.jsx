@@ -7,7 +7,7 @@ const SelectMentor = () => {
 
   return (
     <>
-      <Form.Select onChange={(e) => { setPage(""); setStudi(e.target.value); }} value={studi} >
+      <Form.Select onChange={(e) => { setStudi(e.target.value); }} value={studi} >
         <option value="" >Studi</option>
         <option key="Studi Dalam Negeri" value="Studi Dalam Negeri">Studi Dalam Negeri</option>
         <option key="Studi Luar Negeri" value="Studi Luar Negeri">Studi Luar Negeri</option>
