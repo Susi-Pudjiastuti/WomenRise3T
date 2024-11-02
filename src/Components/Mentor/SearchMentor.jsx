@@ -3,7 +3,7 @@ import { MentorContext } from '../../Context/MentorContext'
 
 const SearchMentor = () => {
   const [search, setSearch] = useState("")
-  const { searchMentor, setSearchMentor } = useContext(MentorContext)
+  const { setSearchMentor } = useContext(MentorContext)
 
   const handleSearch = (e) => {
     e.preventDefault()
