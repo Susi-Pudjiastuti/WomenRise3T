@@ -4,28 +4,8 @@ import Swal from 'sweetalert2';
 import { useUser } from '../../Context/UserContext';
 
 const ResetPassword = () => {
-    const { validateOldPassword, handlePasswordReset, isNewPasswordModalOpen, setIsNewPasswordModalOpen } = useUser();
+    const { handlePasswordReset } = useUser();
 
-    const openOldPasswordModal = () => {
-        Swal.fire({
-            title: 'Masukkan Password Anda',
-            input: 'password',
-            inputAttributes: {
-                autocapitalize: 'off'
-            },
-            showCancelButton: true,
-            confirmButtonText: 'Selanjutnya',
-            showLoaderOnConfirm: true,
-            preConfirm: (oldPassword) => {
-                if (!oldPassword) {
-                    Swal.showValidationMessage('Password harus diisi');
-                    return false;
-                }
-                return validateOldPassword(oldPassword);
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-        });
-    };
 
     const openNewPasswordModal = () => {
         Swal.fire({
@@ -66,15 +46,10 @@ const ResetPassword = () => {
         });
     };
 
-    React.useEffect(() => {
-        if (isNewPasswordModalOpen) {
-            openNewPasswordModal();
-            setIsNewPasswordModalOpen(false);
-        }
-    }, [isNewPasswordModalOpen]);
+
 
     return (
-        <a style={{ color: "#004987", cursor: "pointer" }} onClick={openOldPasswordModal}>
+        <a style={{ color: "#004987", cursor: "pointer" }} onClick={openNewPasswordModal}>
             Reset Password
         </a>
     );

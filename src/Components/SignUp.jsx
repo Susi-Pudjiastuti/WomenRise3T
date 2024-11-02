@@ -5,20 +5,23 @@ import { useDropzone } from "react-dropzone";
 import Girl from '../assets/Mask-group-1.webp';
 import Logo from '../assets/Logo WomenRise3T.svg';
 import { GoUpload } from "react-icons/go";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        nama: "",
+        namaLengkap: "",
         asalDaerah: "",
         email: "",
         password: "",
         confirmPassword: "",
+        avatar: "",
         kartuIdentitas: "", // URL file setelah upload ke Cloudinary
     });
 
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false); // Untuk handle loading saat upload
+    const [avatarLoading, setAvatarLoading] = useState(false);
 
     // Handle file drop menggunakan Dropzone
     const { getRootProps, getInputProps } = useDropzone({
@@ -55,6 +58,40 @@ const Signup = () => {
         }
     };
 
+    const { getRootProps: getAvatarRootProps, getInputProps: getAvatarInputProps } = useDropzone({
+        onDrop: async (acceptedFiles) => {
+            const file = acceptedFiles[0];
+            if (file) {
+                await handleUploadAvatar(file); // Upload file ke Cloudinary
+            }
+        },
+        accept: {
+            "image/jpeg": [".jpg", ".jpeg"],
+            "image/png": [".png"],
+            "image/svg+xml": [".svg"],
+        },
+    });
+
+    // Upload file avatar ke Cloudinary
+    const handleUploadAvatar = async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "dnrcfcjm"); // preset dari Cloudinary
+        setAvatarLoading(true);
+        try {
+            const response = await axios.post(
+                "https://api.cloudinary.com/v1_1/dsdzpyznj/image/upload", // URL API Cloudinary
+                formData
+            );
+            const avatar = response.data.secure_url; // URL gambar dari Cloudinary
+            setFormData((prevData) => ({ ...prevData, avatar })); // Simpan URL ke state
+        } catch (error) {
+            console.error("Upload ke Cloudinary gagal", error);
+        } finally {
+            setAvatarLoading(false);
+        }
+    };
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -71,19 +108,21 @@ const Signup = () => {
         }
 
         const dataToSend = {
-            nama: formData.nama,
+            namaLengkap: formData.namaLengkap,
             asalDaerah: formData.asalDaerah,
             email: formData.email,
             password: formData.password,
             kartuIdentitas: formData.kartuIdentitas, // URL gambar yang sudah diupload ke Cloudinary
+            avatar: formData.avatar
         };
 
         try {
             const response = await axios.post(
-                "https://api.com/signup", // Ganti dengan URL API backend
+                "http://localhost:3000/auth/regis", // Ganti dengan URL API backend
                 dataToSend
             );
             console.log("Signup successful", response.data);
+            navigate('/login');
         } catch (error) {
             console.error("Signup failed", error);
         }
@@ -93,7 +132,7 @@ const Signup = () => {
         <Container fluid className="login-container vh-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: '#F6FBFD' }}>
             <Row className="w-100 align-items-center" style={{ backgroundColor: '#FFF', height: '100vh', objectFit: 'cover', marginLeft: '70px', marginRight: '70px' }}>
                 <Col md={6} className="d-none d-md-flex justify-content-center align-items-stretch">
-                    <img src={Girl} alt="Login" className="img-fluid d-none d-md-block" style={{ height: '115vh', objectFit: 'cover' }} />
+                    <img src={Girl} alt="Login" className="img-fluid d-none d-md-block" style={{ height: '135vh', objectFit: 'cover' }} />
                 </Col>
                 <Col md={6} className="px-5">
                     <h3 className="text-center" style={{ fontFamily: 'Vesper Libre, serif', fontSize: '1.5rem', fontWeight: 'bold' }}>
@@ -102,14 +141,14 @@ const Signup = () => {
                     </h3>
                     <Form onSubmit={handleSubmit}>
                         {/* Input Nama */}
-                        <Form.Group className="mb-1" controlId="nama">
-                            <Form.Label>Nama</Form.Label>
+                        <Form.Group className="mb-1" controlId="namaLengkap">
+                            <Form.Label>Nama Lengkap </Form.Label>
                             <Form.Control
                                 type="text"
-                                name="nama"
-                                value={formData.nama}
+                                name="namaLengkap"
+                                value={formData.namaLengkap}
                                 onChange={handleChange}
-                                placeholder="Masukkan Nama"
+                                placeholder="Masukkan Nama Lengkap"
                             />
                         </Form.Group>
 
@@ -123,8 +162,8 @@ const Signup = () => {
                                 onChange={handleChange}
                             >
                                 <option value="">Pilih Asal Daerah</option>
-                                <option value="wilayah1">Wilayah 1</option>
-                                <option value="wilayah2">Wilayah 2</option>
+                                <option value="wilayah1">Maluku</option>
+                                <option value="wilayah2">Papua</option>
                             </Form.Control>
                         </Form.Group>
 
@@ -167,6 +206,50 @@ const Signup = () => {
                             )}
                         </Form.Group>
 
+                        {/* Upload Foto Diri */}
+                        <Form.Group className="mb-1">
+                            <Form.Label>Upload Foto Diri</Form.Label>
+                            <div
+                                {...getAvatarRootProps()}
+                                className="dropzone rounded-3"
+                                style={{
+                                    border: "1.5px dashed #004987",
+                                    padding: "3px",
+                                    textAlign: "center",
+                                    marginBottom: "3px",
+                                }}
+                            >
+                                <input {...getAvatarInputProps()} />
+                                {avatarLoading ? (
+                                    <div>
+                                        <Spinner animation="border" role="status">
+                                            <span className="visually-hidden">Loading...</span>
+                                        </Spinner>
+                                        <p>Uploading file...</p>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <GoUpload />
+                                        <p> Drag and Drop or <a style={{ color: "blue", cursor: "pointer" }}>choose your file</a> for upload <br />
+                                            <small>JPG, PNG, or SVG</small>
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                            {formData.avatar && (
+                                <p>
+                                    File berhasil diupload:{" "}
+                                    <a
+                                        href={formData.avatar}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Lihat File
+                                    </a>
+                                </p>
+                            )}
+                        </Form.Group>
+
                         {/* Upload Kartu Identitas */}
                         <Form.Group className="mb-1">
                             <Form.Label>Upload foto KTP/KK/Kartu Pelajar</Form.Label>
@@ -175,9 +258,9 @@ const Signup = () => {
                                 className="dropzone-box rounded-3"
                                 style={{
                                     border: "1.5px dashed #004987",
-                                    padding: "20px",
+                                    padding: "10px",
                                     textAlign: "center",
-                                    marginBottom: "20px",
+                                    marginBottom: "10px",
                                 }}
                             >
                                 <input {...getInputProps()} />
