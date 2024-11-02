@@ -20,10 +20,7 @@ export const UserProvider = ({ children }) => {
     const fetchUserData = async () => {
         setLoading(true);
         try {
-            // Ambil token dari localStorage
             const token = localStorage.getItem('token');
-
-            // Tambahkan headers dengan token
             const config = {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -41,9 +38,8 @@ export const UserProvider = ({ children }) => {
         } catch (error) {
             console.error('Error fetching user data:', error);
 
-            // Handle specific error cases
             if (error.response) {
-                // Server responded with error
+
                 switch (error.response.status) {
                     case 401:
                         setError('Unauthorized access. Please login again.');
@@ -55,14 +51,11 @@ export const UserProvider = ({ children }) => {
                         setError(`Server error: ${error.response.data.message || 'Unknown error'}`);
                 }
             } else if (error.request) {
-                // Request made but no response
                 setError('Cannot connect to server. Please check your internet connection.');
             } else {
-                // Other errors
                 setError('An error occurred while loading data.');
             }
 
-            // Show error using SweetAlert
             Swal.fire({
                 icon: 'error',
                 title: 'Error Loading Data',
