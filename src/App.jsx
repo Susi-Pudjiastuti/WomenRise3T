@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
+import './style.css'
 import AboutUs from './Pages/AboutUs';
 import {
   createBrowserRouter,
@@ -17,6 +18,8 @@ import MentorContextProvider from './Context/MentorContext';
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import { UserProvider } from './Context/UserContext';
+import LandingFull from './Components/Landing/LandingFull';
+
 
 
 
@@ -25,7 +28,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LandingPage />,
+      element: <LandingFull />,
     },
     {
       path: "/aboutus",

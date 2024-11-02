@@ -1,0 +1,102 @@
+.vesper-libre-regular {
+    font-family: "Vesper Libre", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+.vesper-libre-medium {
+    font-family: "Vesper Libre", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+  
+.vesper-libre-bold {
+    font-family: "Vesper Libre", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+  
+.vesper-libre-black {
+    font-family: "Vesper Libre", serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+/* navbar */
+.button-style-navy{
+    background-color: #004987;
+    color: white;
+    border-radius: 6px;
+}
+
+.button-style-text{
+    color: #004987;
+}
+
+.button-style-outline{
+    color: #004987 !important;
+    border: #004987 1px solid !important;
+}
+
+.button-style-outline:hover{
+    background-color: #004987;
+    color: white !important;
+}
+
+.button-style-navy:hover{
+    background-color: #004987;
+    color: white;
+}
+
+#nav-title{
+    color: #333333;
+    font-size: 1.5rem;
+}
+
+.background-lightblue{
+    background-color: #F6FBFD;
+}
+
+.active{
+    color: #004987 !important;
+}
+
+article p{
+    color: #323539;
+}
+
+.rounded-img{
+    border-radius: 50%;
+}
+
+#testimony-profile{
+    font-size: small;
+}
+
+.status-tag{
+    border: 1px solid #004987 ;
+    border-radius: 50px;
+    font-size: small;
+}
+
+@media (max-width: 	767px) {
+    .custom-img {
+      width: 100%; /* Custom width for phones */
+      height: 100%; /* Custom height for phones */
+    }
+  }
+
+@media (max-width: 576px){
+    #nav-title {
+        display: none;
+    }
+}
+
+/* tab style */
+.tab-style{
+    color: #323539 !important;
+}
