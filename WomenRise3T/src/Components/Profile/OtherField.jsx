@@ -12,7 +12,7 @@ const OtherField = () => {
                 <Form.Label>Nama</Form.Label>
                 <Form.Control
                     type="text"
-                    value={user.name}
+                    value={user.namaLengkap}
                     readOnly
                 />
             </Form.Group>

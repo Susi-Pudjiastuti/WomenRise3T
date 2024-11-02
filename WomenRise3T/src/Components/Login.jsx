@@ -31,12 +31,13 @@ const Login = () => {
 
         try {
             // mengirim data login ke backend pakai axios
-            const response = await axios.post('https:/api/auth/login', {
+            const response = await axios.post("http://localhost:3000/auth/login", {
                 email: email,
                 password: password,
             });
 
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
 
 
             // Jika login berhasil
