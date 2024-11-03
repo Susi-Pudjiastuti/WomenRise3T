@@ -3,7 +3,6 @@ import { Container } from 'react-bootstrap';
 import NotLoggedIn from '../Components/NotLoggedIn';
 import AboutSection from '../Components/AboutUs/AboutSection';
 import TeamSection from '../Components/AboutUs/TeamSection';
-import Navigasi from '../Navigation/Navbar';
 
 
 const AboutUs = () => {
@@ -33,9 +32,6 @@ const AboutUs = () => {
 
     return (
         <>
-            <div>
-                <Navigasi />
-            </div>
             <Container fluid className="my-5" style={{ fontFamily: 'Inter, Sans-serif' }}>
                 <h2 className="text-center mb-5" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#004987' }}>
                     About Us</h2>
