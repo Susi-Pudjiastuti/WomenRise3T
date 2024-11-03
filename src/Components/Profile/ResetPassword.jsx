@@ -49,7 +49,7 @@ const ResetPassword = () => {
 
 
     return (
-        <a style={{ color: "#004987", cursor: "pointer" }} onClick={openNewPasswordModal}>
+        <a style={{ color: "#004987", cursor: "pointer", fontFamily: 'Inter, Sans-Serif', fontSize: '1rem', fontWeight: "bold" }} onClick={openNewPasswordModal}>
             Reset Password
         </a>
     );

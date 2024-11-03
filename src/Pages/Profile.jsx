@@ -11,6 +11,7 @@ import OtherField from '../Components/Profile/OtherField';
 const Profile = () => {
     const { user } = useUser();
 
+
     return (
         <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
             <Row className="w-100 align-items-center" style={{ objectFit: 'cover', marginLeft: '70px', marginRight: '70px' }}>
@@ -18,8 +19,11 @@ const Profile = () => {
                     <Sidebar />
                 </Col>
                 <Col>
-                    <div className="container mt-2" style={{ fontFamily: "Inter, Sans-serif" }}>
-                        <h1 className="mb-5">Profile Saya</h1>
+                    <div className="container mt-2">
+                        <h1 className="mb-3" style={{
+                            fontFamily: "Inter, Sans-serif",
+                            fontSize: "3rem"
+                        }}>Profile Saya</h1 >
                         <Form>
                             <EmailField />
                             <OtherField />

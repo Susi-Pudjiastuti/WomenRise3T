@@ -118,7 +118,7 @@ const Signup = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:3000/auth/regis", // Ganti dengan URL API backend
+                "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/auth/regis", // Ganti dengan URL API backend
                 dataToSend
             );
             console.log("Signup successful", response.data);
@@ -160,10 +160,20 @@ const Signup = () => {
                                 name="asalDaerah"
                                 value={formData.asalDaerah}
                                 onChange={handleChange}
+
                             >
                                 <option value="">Pilih Asal Daerah</option>
-                                <option value="wilayah1">Maluku</option>
-                                <option value="wilayah2">Papua</option>
+                                <option value="Lampung">Lampung</option>
+                                <option value="Maluku">Maluku</option>
+                                <option value="Maluku Utara">Maluku Utara</option>
+                                <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                                <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                                <option value="Papua">Papua</option>
+                                <option value="Papua Barat">Papua Barat</option>
+                                <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                                <option value="Sumatera Utara">Sumatera Utara</option>
+                                <option value="Sumatera Selatan">Sumatera Selatan</option>
+                                <option value="Sumatera Barat">Sumatera Barat</option>
                             </Form.Control>
                         </Form.Group>
 
