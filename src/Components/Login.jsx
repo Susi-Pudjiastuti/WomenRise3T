@@ -31,7 +31,7 @@ const Login = () => {
 
         try {
             // mengirim data login ke backend pakai axios
-            const response = await axios.post("http://localhost:3000/auth/login", {
+            const response = await axios.post("https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/auth/login", {
                 email: email,
                 password: password,
             });

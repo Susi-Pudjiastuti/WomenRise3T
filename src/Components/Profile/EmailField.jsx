@@ -33,15 +33,14 @@ const EmailField = () => {
 
     return (
         <Form.Group controlId="formEmail" className="mb-2">
-            <Form.Label>E-mail</Form.Label>
+            <Form.Label style={{ fontFamily: 'Inter, Sans-Serif', fontSize: '1rem' }}>E-mail</Form.Label>
             <InputGroup>
-                <Form.Control
+                <Form.Control style={{ fontFamily: 'Inter, Sans-Serif', fontSize: '0.9rem', color: 'gray', backgroundColor: '#F6FBFD' }}
                     type="email"
                     value={user.email}
                     readOnly
                 />
-                <Button
-                    variant="outline-secondary"
+                <Button style={{ color: 'gray', backgroundColor: '#F6FBFD', borderLeft: "0", borderColor: '#d4d9d5' }}
                     onClick={openEmailModal}
                     title="Edit Email"
                 >

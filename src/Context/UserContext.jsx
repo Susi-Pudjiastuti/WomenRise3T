@@ -3,74 +3,39 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 export const useUser = () => {
     return useContext(UserContext);
 };
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState({ email: '', name: '', asalDaerah: '' });
     const [isNewPasswordModalOpen, setIsNewPasswordModalOpen] = useState(false);
+    const [user, setUser] = useState({
+        email: '',
+        namaLengkap: '',
+        asalDaerah: ''
+    });
 
     useEffect(() => {
-        fetchUserData();
-    }, []);
+        const storedUser = localStorage.getItem('user');
 
-    const fetchUserData = async () => {
-        setLoading(true);
-        try {
-            const token = localStorage.getItem('token');
-            const config = {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            };
-
-            const response = await axios.get('http://localhost:3000/user', config);
-
-            if (response.data) {
-                setUser(response.data);
-            } else {
-                throw new Error('No data received from server');
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-
-            if (error.response) {
-
-                switch (error.response.status) {
-                    case 401:
-                        setError('Unauthorized access. Please login again.');
-                        break;
-                    case 404:
-                        setError('User data not found.');
-                        break;
-                    default:
-                        setError(`Server error: ${error.response.data.message || 'Unknown error'}`);
-                }
-            } else if (error.request) {
-                setError('Cannot connect to server. Please check your internet connection.');
-            } else {
-                setError('An error occurred while loading data.');
-            }
-
-            Swal.fire({
-                icon: 'error',
-                title: 'Error Loading Data',
-                text: error.response?.data?.message || 'Failed to load user data',
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setUser({
+                email: user.email,
+                namaLengkap: user.namaLengkap,
+                asalDaerah: user.asalDaerah
             });
-        } finally {
-            setLoading(false);
+        } else {
+            console.log('user not found');
         }
-    };
-
+    }, []);
 
     const handlePasswordReset = async (newPassword) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put('http://localhost:3000/user/update/password',
+            await axios.put('https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/user/update/password',
                 { password: newPassword },
                 {
                     headers: {
@@ -89,7 +54,7 @@ export const UserProvider = ({ children }) => {
     const handleEmailReset = async (newEmail) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put('http://localhost:3000/user/update/email',
+            await axios.put('https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/user/update/email',
                 { email: newEmail },
                 {
                     headers: {

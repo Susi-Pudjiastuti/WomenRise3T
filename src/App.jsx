@@ -12,7 +12,6 @@ import Aktivitas from './Pages/Aktivitas';
 import DetailMentor from './Pages/DetailMentor';
 import Motivation from './Pages/Motivation';
 import Profile from './Pages/Profile';
-import LandingPage from './Pages/LandingPage';
 import Mentor from './Pages/Mentor';
 import MentorContextProvider from './Context/MentorContext';
 import Login from './Components/Login'
