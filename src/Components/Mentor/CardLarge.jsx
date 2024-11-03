@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import RegisModal from '../Modal/RegisModal'
+import RegisModalCard from '../Modal/RegisModalCard'
 
 
 const CardLarge = ({ mentor }) => {
@@ -23,7 +24,7 @@ const CardLarge = ({ mentor }) => {
 
               <div className="d-flex justify-content-end gap-2">
                 <button className="btn btn-secondary" onClick={() => { navigate(`/detail/${mentor?._id}`) }} >Selengkapnya <i className="bi bi-arrow-right"></i></button>
-                <RegisModal/>
+                <RegisModalCard mentor={mentor}/>
               </div>
             </div>
           </div>
