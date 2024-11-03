@@ -1,3 +1,4 @@
+import RegisModal from "../Modal/RegisModal"
 
 
 const ProfileCard = ({ mentors }) => {
@@ -12,10 +13,11 @@ const ProfileCard = ({ mentors }) => {
           <h6 >{mentors?.asalDaerah}</h6>
           <p className="text-muted my-0">Rating Mentor: {mentors?.rating}</p>
           <p className="text-muted">Total Sessions: {mentors?.totalSessions}</p>
-          <button className="btn btn-primary" > <i className="bi bi-check2-square"></i> Daftar Mentorship <i
-            className="bi bi-arrow-right"></i></button>
+          <RegisModal/>
         </div>
       </div>
+
+      
     </>
   )
 }
