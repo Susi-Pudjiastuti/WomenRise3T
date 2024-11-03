@@ -1,6 +1,6 @@
 // Profile.js
 import React from 'react';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form, Navbar } from 'react-bootstrap';
 import { useUser } from '../Context/UserContext';
 import Sidebar from '../Components/Sidebar';
 import EmailField from '../Components/Profile/EmailField';
