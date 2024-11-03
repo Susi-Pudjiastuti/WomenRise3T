@@ -1,7 +1,6 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import Ava from '../assets/avatar.svg'
 import { MdOutlineHistoryEdu } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { IoMdLogOut } from "react-icons/io";
@@ -14,9 +13,11 @@ const Sidebar = () => {
         localStorage.removeItem('user');
         window.location.reload();
     }
+    const ava = JSON.parse(localStorage.getItem('user'));
+
     return (
         <div>
-            <img src={Ava} alt="Profile" className='mb-4' />
+            <img src={ava.avatar} className='rounded-circle mb-3' style={{ width: '12rem', height: '12rem' }} />
             <Nav className="flex-column">
                 <div style={{
                     border: '1px solid #dbdad7',
@@ -41,6 +42,4 @@ const Sidebar = () => {
         </div>
     );
 };
-
 export default Sidebar;
-
