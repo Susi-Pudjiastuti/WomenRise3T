@@ -56,7 +56,8 @@ function RegisModal() {
   return (
     <div>
       {/* tombol "daftar sekarang" dari halaman detail mentor */}
-      <button onClick={handleModal}>Daftar sekarang</button>
+      <button className="btn btn-primary" onClick={handleModal}> <i className="bi bi-check2-square"></i> Daftar Mentorship <i
+            className="bi bi-arrow-right"></i></button>
 
       {/* Jika modal bernilai true, tampilkan modal */}
       {modal && (
@@ -74,7 +75,7 @@ function RegisModal() {
             </p>
 
             <Form noValidate validated={validated} onSubmit={handleConfirm}>
-              <Form.Group className="mb-3" controlId="inputNama">
+              <Form.Group className="mb-3 text-start" controlId="inputNama">
                 <Form.Label>Nama</Form.Label>
                 <Form.Control 
                   required
@@ -84,7 +85,7 @@ function RegisModal() {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="inputEmail">
+              <Form.Group className="mb-3 text-start" controlId="inputEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control required type="email"/>
                 <Form.Control.Feedback type="invalid">
@@ -92,7 +93,7 @@ function RegisModal() {
                 </Form.Control.Feedback>
               </Form.Group>
               
-              <Form.Group className="mb-3" controlId="inputNomor">
+              <Form.Group className="mb-3 text-start" controlId="inputNomor">
                 <Form.Label>Nomor Handphone (WA)</Form.Label>
                 <Form.Control type="text" required />
                 <Form.Control.Feedback type="invalid">
@@ -100,7 +101,7 @@ function RegisModal() {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="inputAlasan">
+              <Form.Group className="mb-3 text-start" controlId="inputAlasan">
                 <Form.Label>Alasan anda mendaftar mentorship ini</Form.Label>
                 <Form.Control type="text" as='textarea' required  />
                 <Form.Control.Feedback type="invalid">
@@ -109,7 +110,7 @@ function RegisModal() {
               </Form.Group>
 
               {/* tambah value nanti untuk display data dari api */}
-              <Form.Group className="mb-3" controlId="mentor">
+              <Form.Group className="mb-3 text-start" controlId="mentor">
                 <Form.Label>Mentor</Form.Label>
                 <Form.Control
                   type="text"
@@ -122,7 +123,7 @@ function RegisModal() {
               </Form.Group>
 
               
-              <Form.Group className="mb-4" controlId="mentorship">
+              <Form.Group className="mb-4 text-start" controlId="mentorship">
                 <Form.Label>Kelas Mentorship</Form.Label>
                 <Form.Select required aria-label="Default select example" className="mb-3">
                   <option value="">Pilih jadwal mentorship</option>
