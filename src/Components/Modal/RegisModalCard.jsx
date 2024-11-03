@@ -5,9 +5,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import cross from "../../assets/icon/close.svg"
 import Swal from 'sweetalert2'
-import { useParams } from "react-router-dom";
 
-function RegisModal({mentors}) {
+function RegisModalCard({mentor}) {
   // untuk boleaan state modal
   const [modal, setModal] = useState(false);
 
@@ -119,7 +118,7 @@ function RegisModal({mentors}) {
                   aria-label="Disabled input example"
                   disabled
                   readOnly
-                  value={mentors?.namaLengkap + " - " + mentors?.asalDaerah}
+                  value={mentor?.namaLengkap + " - " + mentor?.asalDaerah}
                 />
               </Form.Group>
 
@@ -156,4 +155,4 @@ function RegisModal({mentors}) {
   );
 }
 
-export default RegisModal;
+export default RegisModalCard;

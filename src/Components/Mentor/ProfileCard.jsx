@@ -13,7 +13,7 @@ const ProfileCard = ({ mentors }) => {
           <h6 >{mentors?.asalDaerah}</h6>
           <p className="text-muted my-0">Rating Mentor: {mentors?.rating}</p>
           <p className="text-muted">Total Sessions: {mentors?.totalSessions}</p>
-          <RegisModal/>
+          <RegisModal mentors={mentors}/>
         </div>
       </div>
 
