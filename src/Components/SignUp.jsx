@@ -135,10 +135,12 @@ const Signup = () => {
                     <img src={Girl} alt="Login" className="img-fluid d-none d-md-block" style={{ height: '135vh', objectFit: 'cover' }} />
                 </Col>
                 <Col md={6} className="px-5">
-                    <h3 className="text-center" style={{ fontFamily: 'Vesper Libre, serif', fontSize: '1.5rem', fontWeight: 'bold' }}>
-                        <img src={Logo} width="65px" height="55px" alt="Logo" />
-                        WomenRise3T
-                    </h3>
+                    <Link to="/">
+                        <h3 className="text-center" style={{ fontFamily: 'Vesper Libre, serif', fontSize: '1.5rem', fontWeight: 'bold', color: 'black' }}>
+                            <img src={Logo} width="65px" height="55px" alt="Logo" />
+                            WomenRise3T
+                        </h3>
+                    </Link>
                     <Form onSubmit={handleSubmit}>
                         {/* Input Nama */}
                         <Form.Group className="mb-1" controlId="namaLengkap">
@@ -314,7 +316,7 @@ const Signup = () => {
                     </Form>
 
                     <div className="mt-3 text-center">
-                        <span>Belum punya akun? <Link to="/login">Log In</Link></span>
+                        <span>Belum punya akun?</span> <Link to="/login">Log In</Link>
                     </div>
                 </Col>
             </Row>
