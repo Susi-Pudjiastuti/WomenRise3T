@@ -1,11 +1,11 @@
-import FAQ from "./FAQ"
-import Hero from "./Hero"
-import Mentor from "./Mentor"
-import Motivasi from "./Motivasi"
-import Tentang from "./Tentang"
-import Testimoni from "./Testimoni"
-import whatsapp from '../../assets/icon/whatsapp.svg'
-import { sponsor1, sponsor2, sponsor, sponsor3, sponsor4 } from '../../assets/sponsor/index.jsx'
+import FAQ from "../Components/Landing/FAQ.jsx"
+import Hero from "../Components/Landing/Hero.jsx"
+import Mentor from "../Components/Landing/Mentor.jsx"
+import Motivasi from "../Components/Landing/Motivasi.jsx"
+import Tentang from "../Components/Landing/Tentang.jsx"
+import Testimoni from "../Components/Landing/Testimoni.jsx"
+import whatsapp from '../assets/icon/whatsapp.svg'
+import { sponsor1, sponsor2, sponsor, sponsor3, sponsor4 } from '../assets/sponsor/index.jsx'
 
 function LandingFull() {
     return (

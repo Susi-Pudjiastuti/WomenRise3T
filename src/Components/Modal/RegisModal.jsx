@@ -66,7 +66,7 @@ function RegisModal({mentors}) {
           <div className={styles.overlay} onClick={handleModal}></div>
 
           <div className={styles.modalContent}>
-            <h3 class="mb-3 text-center vesper-libre-bold pt-2">
+            <h3 className="mb-3 text-center vesper-libre-bold pt-2">
               <img src={logo} width="40" height="auto" /> WomenRise3T
             </h3>
             <p className="text-center">
