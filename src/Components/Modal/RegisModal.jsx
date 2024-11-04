@@ -5,31 +5,32 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import cross from "../../assets/icon/close.svg"
 import Swal from 'sweetalert2'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function RegisModal({mentors}) {
+function RegisModal({ mentors }) {
   // untuk boleaan state modal
+  const navigate = useNavigate()
   const [modal, setModal] = useState(false);
 
   //state untuk cek jika form terisi atau tidak
   const [validated, setValidated] = useState(false);
 
   const [booking, setBooking] = useState({
-      kelas: {
-        jam: "",
-        tanggal: "",
-        judul: ""
-      },
-      mentor: {
-        nama: "Cahaya Intan",
-        daerah: "Maluku Utara"
-      }
+    kelas: {
+      jam: "",
+      tanggal: "",
+      judul: ""
+    },
+    mentor: {
+      nama: "Cahaya Intan",
+      daerah: "Maluku Utara"
+    }
 
   })
 
   const handleModal = () => {
     //set agar modal menjadi kebalikannya ketika diclick
-    setModal(!modal);
+    localStorage.token ? setModal(!modal) : navigate('/login');
   };
 
   // konfirmasi
@@ -51,14 +52,14 @@ function RegisModal({mentors}) {
     }
 
     setValidated(true);
-    
+
   }
 
   return (
     <div>
       {/* tombol "daftar sekarang" dari halaman detail mentor */}
       <button className="btn btn-primary" onClick={handleModal}> <i className="bi bi-check2-square"></i> Daftar Mentorship <i
-            className="bi bi-arrow-right"></i></button>
+        className="bi bi-arrow-right"></i></button>
 
       {/* Jika modal bernilai true, tampilkan modal */}
       {modal && (
@@ -70,7 +71,7 @@ function RegisModal({mentors}) {
               <img src={logo} width="40" height="auto" /> WomenRise3T
             </h3>
             <p className="text-center">
-              
+
               Mohon registrasi ulang data anda untuk melakukan booking
               mentoring.
             </p>
@@ -78,35 +79,35 @@ function RegisModal({mentors}) {
             <Form noValidate validated={validated} onSubmit={handleConfirm}>
               <Form.Group className="mb-3 text-start" controlId="inputNama">
                 <Form.Label>Nama</Form.Label>
-                <Form.Control 
+                <Form.Control
                   required
                   type="text" />
                 <Form.Control.Feedback type="invalid">
-                    Mohon isi data nama anda.
+                  Mohon isi data nama anda.
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3 text-start" controlId="inputEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control required type="email"/>
+                <Form.Control required type="email" />
                 <Form.Control.Feedback type="invalid">
-                    Mohon isi data email anda.
+                  Mohon isi data email anda.
                 </Form.Control.Feedback>
               </Form.Group>
-              
+
               <Form.Group className="mb-3 text-start" controlId="inputNomor">
                 <Form.Label>Nomor Handphone (WA)</Form.Label>
                 <Form.Control type="text" required />
                 <Form.Control.Feedback type="invalid">
-                    Mohon isi nomor handphone anda.
+                  Mohon isi nomor handphone anda.
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3 text-start" controlId="inputAlasan">
                 <Form.Label>Alasan anda mendaftar mentorship ini</Form.Label>
-                <Form.Control type="text" as='textarea' required  />
+                <Form.Control type="text" as='textarea' required />
                 <Form.Control.Feedback type="invalid">
-                    Mohon isi alasan anda.
+                  Mohon isi alasan anda.
                 </Form.Control.Feedback>
               </Form.Group>
 
@@ -123,7 +124,7 @@ function RegisModal({mentors}) {
                 />
               </Form.Group>
 
-              
+
               <Form.Group className="mb-4 text-start" controlId="mentorship">
                 <Form.Label>Kelas Mentorship</Form.Label>
                 <Form.Select required aria-label="Default select example" className="mb-3">
@@ -133,7 +134,7 @@ function RegisModal({mentors}) {
                   <option value="3">Three</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                    Mohon pilih kelasnya.
+                  Mohon pilih kelasnya.
                 </Form.Control.Feedback>
               </Form.Group>
 
@@ -142,13 +143,13 @@ function RegisModal({mentors}) {
                 type="submit"
                 className="btn btn-primary w-100 border-0"
                 style={{ background: "#004987" }}
-                
+
               >
                 Book Jadwal Mentor
               </Button>
             </Form>
 
-            <img src={cross} onClick={handleModal} className={styles.closeModal} style={{cursor: "pointer", width: "40px"}}/>
+            <img src={cross} onClick={handleModal} className={styles.closeModal} style={{ cursor: "pointer", width: "40px" }} />
           </div>
         </div>
       )}
