@@ -30,7 +30,16 @@ function RegisModalCard({ mentor }) {
 
   const handleModal = () => {
     //set agar modal menjadi kebalikannya ketika diclick
-    localStorage.token ? setModal(!modal) : navigate('/login');
+    if (!localStorage.token) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Silahkan Login Terlebih Dahulu",
+      });
+      navigate('/login');
+      return
+    }
+    setModal(!modal)
   };
 
   // konfirmasi
