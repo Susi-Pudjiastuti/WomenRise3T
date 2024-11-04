@@ -4,7 +4,8 @@ import Swal from "sweetalert2";
 // fetch mentor by search and page
 export async function fetchMentors({ searchMentor, page, studi, daerah }) {
   let endpoint =
-    "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentors?all=true";
+    // "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentors?all=true";
+    "http://localhost:3000/mentors?all=true";
 
   if (searchMentor) {
     endpoint += `&search=${searchMentor}`;
