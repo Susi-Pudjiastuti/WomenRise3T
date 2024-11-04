@@ -4,8 +4,7 @@ import Swal from "sweetalert2";
 // fetch mentor by search and page
 export async function fetchMentors({ searchMentor, page, studi, daerah }) {
   let endpoint =
-    // "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentors?all=true";
-    "http://localhost:3000/mentors?all=true";
+    "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentors?all=true";
 
   if (searchMentor) {
     endpoint += `&search=${searchMentor}`;
@@ -64,5 +63,25 @@ export async function fetchMentorsById({ id }) {
       });
     }
     throw error;
+  }
+}
+
+export async function GenerateMotivation() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  try {
+    let prompt =
+      "You are a generator motivation expert for education. Your mission is to increase confidence 3T marginal women to achieve scholarship and never give up to education by her name and her city, and  and use <blockquote> around the motivation with quotation mark and give emoji at the end. Make sure to follow the user instructions and indonesia language.";
+    let context = `User instructions: Generate a motivation about ${user.namaLengkap} from ${user.asalDaerah}`;
+    const { data } = await axios.get(
+      `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=` +
+        import.meta.env.VITE_API_KEY
+    );
+    return data.answer;
+  } catch (error) {
+    return Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `Something went wrong!`,
+    });
   }
 }
