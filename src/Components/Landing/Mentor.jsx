@@ -23,14 +23,14 @@ function Mentor() {
                 <div id="list-mentor" className="row justify-content-center my-0 my-md-5 gy-4">
 
                   {mentors?.map((mentor, index) => (
-                        <div className="col-md-4 d-flex justify-content-center">
+                        <div key={index} className="col-md-4 d-flex justify-content-center">
                           <div className="card background-lightblue" style={{width: "18rem"}}>
                             <img src={mentor?.avatar} className="card-img-top" alt="..." />
-                            <div class="card-body">
-                              <h4 class="fw-bold">{mentor?.namaLengkap}</h4>
+                            <div className="card-body">
+                              <h4 className="fw-bold">{mentor?.namaLengkap}</h4>
                               <hr></hr>
-                              <p class="m-0 text-start"><img class="me-2" src={univ}/>{mentor?.universitas}</p>
-                              <p class="m-0 text-start"><img class="me-2" src={location}/>{mentor?.asalDaerah}</p>
+                              <p className="m-0 text-start"><img className="me-2" src={univ}/>{mentor?.universitas}</p>
+                              <p className="m-0 text-start"><img className="me-2" src={location}/>{mentor?.asalDaerah}</p>
                             </div>
                           </div>
                         </div>

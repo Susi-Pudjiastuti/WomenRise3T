@@ -17,7 +17,7 @@ import MentorContextProvider from './Context/MentorContext';
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import { UserProvider } from './Context/UserContext';
-import LandingFull from './Components/Landing/LandingFull';
+import LandingFull from './Pages/LandingFull';
 import Layout from './layout/layout';
 
 

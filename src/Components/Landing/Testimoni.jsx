@@ -8,7 +8,7 @@ function Testimoni() {
     getTestimoni();
   }, []);
 
-  let URL = "http://localhost:3000/users";
+  let URL = "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/users";
 
   const getTestimoni = () => {
     axios
@@ -39,18 +39,18 @@ function Testimoni() {
             >
               {testi.map((items, index) => (
                 <div key={index}>
-                 <div class="card" >
-                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                 <div className="card" >
+                    <div className="card-body d-flex flex-column justify-content-between p-4">
                       <div>
                       <img src={petik} width="32" height="auto" />
-                      <p class="card-text p-2">{items.testimoni}</p>
+                      <p className="card-text p-2">{items.testimoni}</p>
                       </div>
 
-                      <div class="d-flex align-items-center mt-2">
-                        <img class="rounded-img object-fit-cover" src={items.avatar} width="40" height="40"/>
-                        <div class="d-flex flex-column ms-2">
-                        <p class="m-0 fw-bold button-style-text" id="testimony-profile">{items.namaLengkap}</p>
-                        <p class="m-0" id="testimony-profile">{items.asalDaerah}</p>
+                      <div className="d-flex align-items-center mt-2">
+                        <img className="rounded-img object-fit-cover" src={items.avatar} width="40" height="40"/>
+                        <div className="d-flex flex-column ms-2">
+                        <p className="m-0 fw-bold button-style-text" id="testimony-profile">{items.namaLengkap}</p>
+                        <p className="m-0" id="testimony-profile">{items.asalDaerah}</p>
                         </div>
                       </div>
 
