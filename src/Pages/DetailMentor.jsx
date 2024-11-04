@@ -22,7 +22,7 @@ function DetailMentor() {
 
     return (
         <>
-            <Container className="d-flex mt-5 pt-5">
+            <Container className="d-flex my-5 py-5 ">
                 <div>
                     <MentorInformation mentors={mentors} />
                 </div>

@@ -18,50 +18,55 @@ import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import { UserProvider } from './Context/UserContext';
 import LandingFull from './Components/Landing/LandingFull';
+import Layout from './layout/layout';
 
 
 
 
 function App() {
   const queryClient = new QueryClient();
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <LandingFull />,
-    },
-    {
-      path: "/aboutus",
-      element: <AboutUs />,
-    },
-    {
-      path: "/aktivitas",
-      element: <Aktivitas />,
-    },
-    {
-      path: "/detail/:id",
-      element: <DetailMentor />,
-    },
-    {
-      path: "/motivation",
-      element: <Motivation />,
-    },
-    {
-      path: "/profile",
-      element: <Profile />,
-    },
-    {
-      path: "/mentor",
-      element: <Mentor />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/signup",
-      element: <SignUp />,
-    },
-
+  const router = createBrowserRouter([{
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <LandingFull />,
+      },
+      {
+        path: "aboutus",
+        element: <AboutUs />,
+      },
+      {
+        path: "aktivitas",
+        element: <Aktivitas />,
+      },
+      {
+        path: "detail/:id",
+        element: <DetailMentor />,
+      },
+      {
+        path: "motivation",
+        element: <Motivation />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "mentor",
+        element: <Mentor />,
+      },
+    ]
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
   ]);
 
 
@@ -80,3 +85,11 @@ function App() {
 }
 
 export default App
+
+
+// loader: () => {
+//   if (!localStorage.token) {
+//     return redirect("/login");
+//   }
+//   return null;
+// },
