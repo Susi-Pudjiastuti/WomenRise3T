@@ -33,7 +33,7 @@ const AboutUs = () => {
     return (
         <>
             <Container fluid className="my-5">
-                <h2 className="text-center mb-5" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#004987' }}>
+                <h2 className="text-center mb-5" style={{ fontSize: '2rem', fontWeight: 'bold', color: '#004987' }}>
                     About Us</h2>
                 <AboutSection className="mb-3" />
                 <h3 className="text-center mt-5" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#004987' }}>
