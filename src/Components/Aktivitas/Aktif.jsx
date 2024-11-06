@@ -1,11 +1,24 @@
 // Aktif.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ActivityContext } from '../../Context/ActivityContext';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { BookingContext } from '../../Context/BookingContext';
 
 const Aktif = () => {
     const { activities, cancelActivity } = useContext(ActivityContext);
+    const { bookings, getBookings } = useContext(BookingContext);
+    const mentorshipStatus = true
+
+    useEffect(() => {
+        if (bookings) { // Ensure mentors data is available before calling
+            getBookings(mentorshipStatus)
+            
+        }
+    
+    }, []);
+
+    console.log("Bookings in aktif component:", bookings);
 
     const handleCancel = (id) => {
         Swal.fire({

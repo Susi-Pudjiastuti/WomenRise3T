@@ -11,16 +11,10 @@ function BookingProvider({ children }) {
 
     //function untuk mengambil data booking user
 
-    useEffect(() => {
-        getBookings();
-
-    }, []);
-
-    const getBookings = async () => {
+    const getBookings = useCallback(async (mentorshipStatus) => {
         const token = localStorage.token;
-        console.log("token: " + token)
+        // console.log("token: " + token)
         setLoading(true)
-        console.log("fetching")
 
         if (!token) {
             console.error("Token not available or invalid");
@@ -30,18 +24,17 @@ function BookingProvider({ children }) {
 
         try {
             let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings`;
-            // if (mentorshipStatus) {
-            //     URL += `?mentorshipStatus=${mentorshipStatus}`;
-            // }
+            if (mentorshipStatus) {
+                URL += `?mentorshipStatus=${mentorshipStatus}`;
+            }
 
-            console.log("Fetching bookings from URL:", URL);
 
             const response = await axios.get(URL, {
                 headers: {
                     'Authorization': `Bearer ${token}`, // Make sure `token` is defined in your context
                 },
             });
-            console.log("Response data:", response.data);
+            // console.log("Response data:", response.data.data);
 
             setBookings(response.data.data);
             setLoading(false);
@@ -50,7 +43,7 @@ function BookingProvider({ children }) {
             setError(e.message)
             setLoading(false)
         }
-    }
+    }, [])
 
     //mengambil mentorship untuk ditampilkan di modal
     const fetchMentorships = useCallback(async (mentors) => {
