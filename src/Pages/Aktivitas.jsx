@@ -1,13 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
 import Sidebar from "../Components/Sidebar"
 import { Col, Row, Container } from "react-bootstrap"
 import { ActivityProvider } from '../Context/ActivityContext';
 import { Tabs, Tab } from 'react-bootstrap';
 import Aktif from '../Components/Aktivitas/Aktif';
 import Riwayat from '../Components/Aktivitas/Riwayat';
+import { BookingContext } from "../Context/BookingContext";
 
 function Aktivitas() {
-
+    const { bookings } = useContext(BookingContext);
+    console.log(bookings)
     return (
         <>
             <div>

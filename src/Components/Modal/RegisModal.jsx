@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import logo from "../../assets/logo/Logo WomenRise3T.svg";
 import styles from "./RegisModal.module.css";
 import Button from "react-bootstrap/Button";
@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import cross from "../../assets/icon/close.svg"
 import Swal from 'sweetalert2'
 import { useParams } from "react-router-dom";
+import { BookingContext } from "../../Context/BookingContext";
 
 function RegisModal({mentors}) {
   // untuk boleaan state modal
@@ -14,18 +15,18 @@ function RegisModal({mentors}) {
   //state untuk cek jika form terisi atau tidak
   const [validated, setValidated] = useState(false);
 
-  const [booking, setBooking] = useState({
-      kelas: {
-        jam: "",
-        tanggal: "",
-        judul: ""
-      },
-      mentor: {
-        nama: "Cahaya Intan",
-        daerah: "Maluku Utara"
-      }
+  //mentorhsips and fetchMentorships function from context
+  const { mentorships, fetchMentorships } = useContext(BookingContext);
+  useEffect(() => {
+    if (mentors) { // Ensure mentors data is available before calling
+        fetchMentorships(mentors);
+    }
+  }, [mentors, fetchMentorships]);
 
-  })
+  // console.log(mentorships);
+  console.log(mentorships[0]);
+
+  const [booking, setBooking] = useState([])
 
   const handleModal = () => {
     //set agar modal menjadi kebalikannya ketika diclick
@@ -127,10 +128,17 @@ function RegisModal({mentors}) {
               <Form.Group className="mb-4 text-start" controlId="mentorship">
                 <Form.Label>Kelas Mentorship</Form.Label>
                 <Form.Select required aria-label="Default select example" className="mb-3">
-                  <option value="">Pilih jadwal mentorship</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <option value="">Pilih jadwal mentorship</option>
+                {Array.isArray(mentorships) ? (
+                  mentorships.map((mentorship) => (
+                    <option key={mentorship._id} value={mentorship._id}>
+                      {/* {console.log(mentorship.tema)} */}
+                      {mentorship.tema} - {mentorship.tanggal}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>Data not available</option>
+                )}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                     Mohon pilih kelasnya.
