@@ -21,7 +21,7 @@ const CardSmall = ({ mentor }) => {
             <p className="card-text">
             </p>
             <div className="d-flex justify-content-center gap-2">
-              <button href="#" className="btn btn-secondary" id="btn-more" onClick={() => { navigate(`/detail/${mentor?._id}`) }} >Info <i className="bi bi-arrow-right"></i></button>
+              <button className="btn btn-secondary" id="btn-more" onClick={() => { navigate(`/detail/${mentor?._id}`) }} >Info <i className="bi bi-arrow-right"></i></button>
               <RegisModalCard mentor={mentor} />
             </div>
           </div>

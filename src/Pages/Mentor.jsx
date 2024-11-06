@@ -26,7 +26,7 @@ function Mentor() {
             {/* <!-- Content --> */}
             <div className="container my-5">
                 <div>
-                    <h2 className="text-blue">Mentor - mentor kami</h2>
+                    <h2 className="text-blue" style={{ fontSize: '2rem', fontWeight: 'bold' }}>Mentor - mentor kami</h2>
                     <p className="text-muted">Pilih mentor sesuai kebutuhanmu dan mulai sesi mentoring sekarang</p>
                 </div>
                 <FilterMentorLg />
@@ -52,7 +52,6 @@ function Mentor() {
                                     {mentors?.map((mentor, index) => <CardSmall mentor={mentor} key={index} />)}
                                 </div>
                             </div>
-                            {/* {mentors?.length === undefined ? loading ? <Skeleton count={3} height={180} /> : <NotFound /> : mentors?.length < 4 ? "" : <Pagination />} */}
                             {mentors?.length === undefined ? loading ? <Skeleton count={3} height={180} /> : <NotFound /> : <Pagination />}
                         </div>
                     </div>

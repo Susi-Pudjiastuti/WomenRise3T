@@ -1,18 +1,18 @@
 .btn-primary {
   background-color: #004987;
   border-color: #004987;
+  transition: all 250ms ease-in-out;
 }
 
 .btn-primary:hover {
-  background-color: #fff;
-  border-color: #004987;
-  color: #004987;
+  opacity: 0.9;
 }
 
 .btn-secondary {
   background-color: #fff;
   border-color: #004987;
   color: #004987;
+  transition: all 280ms ease-in-out;
 }
 
 .btn-secondary:hover {

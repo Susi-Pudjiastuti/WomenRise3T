@@ -1,6 +1,6 @@
 // Profile.js
 import React from 'react';
-import { Container, Row, Col, Form, Navbar } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { useUser } from '../Context/UserContext';
 import Sidebar from '../Components/Sidebar';
 import EmailField from '../Components/Profile/EmailField';
@@ -19,11 +19,8 @@ const Profile = () => {
                     <Sidebar />
                 </Col>
                 <Col>
-                    <div className="container mt-2">
-                        <h1 className="mb-3" style={{
-                            fontFamily: "Inter, Sans-serif",
-                            fontSize: "3rem"
-                        }}>Profile Saya</h1 >
+                    <div className="container">
+                        <h1 className="mb-4" >Profile Saya</h1 >
                         <Form>
                             <EmailField />
                             <OtherField />

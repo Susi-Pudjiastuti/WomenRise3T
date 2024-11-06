@@ -5,6 +5,7 @@ import './style.css'
 import AboutUs from './Pages/AboutUs';
 import {
   createBrowserRouter,
+  redirect,
   RouterProvider,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -61,14 +62,22 @@ function App() {
     ]
   },
   {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
-  },
-  ]);
+    loader: () => {
+      if (localStorage.token) {
+        return redirect("/");
+      }
+      return null;
+    },
+    children: [{
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
+    },
+    ]
+  }]);
 
 
   return (
@@ -90,9 +99,3 @@ function App() {
 export default App
 
 
-// loader: () => {
-//   if (!localStorage.token) {
-//     return redirect("/login");
-//   }
-//   return null;
-// },
