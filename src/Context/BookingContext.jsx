@@ -8,34 +8,43 @@ function BookingProvider({children}) {
     const [mentorships, setMentorships] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const token = localStorage.getItem('token');
-
       
     //function untuk mengambil data booking user
-    useEffect(()=> {
-        getBookings()
-    }, [])
 
-    const getBookings = async (mentorshipStatus) => {
+    useEffect(() => {
+        getBookings();
+    
+}, []);
+
+    const getBookings = async () => {
+        const token = localStorage.getItem('token');
+        console.log("token: " + token)
         setLoading(true)
+        console.log("fetching")
 
-        try {
-            // konfigurasi request dengan token dalam header
-            // const config = {
-            //     headers: {
-            //         Authorization: `Bearer ${token}`, //token untuk otentikasi
-            //     },
-            //     params: {
-            //         mentorshipStatus,
-            //     },
-            // };
-      
-            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=${mentorshipStatus}`;
-            // const 
-            const response = await axios.get(URL)
-            setBookings(response.data.data);
+        if (!token) {
+            console.error("Token not available or invalid");
             setLoading(false);
+            return;
+        }
+    
+        try {
+            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings`;
+        // if (mentorshipStatus) {
+        //     URL += `?mentorshipStatus=${mentorshipStatus}`;
+        // }
 
+        console.log("Fetching bookings from URL:", URL);
+
+        const response = await axios.get(URL, {
+            headers: {
+                'Authorization': `Bearer ${token}`, // Make sure `token` is defined in your context
+            },
+        });
+        console.log("Response data:", response.data);
+
+        setBookings(response.data.data);
+        setLoading(false);
         }catch(e){
             console.log(e)
             setError(e.message)
@@ -44,7 +53,6 @@ function BookingProvider({children}) {
     }
 
     //mengambil mentorship untuk ditampilkan di modal
-    
     const fetchMentorships = useCallback(async (mentors) => {
         const mentorId = mentors?._id;
         // console.log("mentorid:" + mentorId);

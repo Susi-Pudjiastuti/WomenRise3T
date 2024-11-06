@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import Sidebar from "../Components/Sidebar"
 import { Col, Row, Container } from "react-bootstrap"
 import { ActivityProvider } from '../Context/ActivityContext';
@@ -8,8 +8,11 @@ import Riwayat from '../Components/Aktivitas/Riwayat';
 import { BookingContext } from "../Context/BookingContext";
 
 function Aktivitas() {
-    const { bookings } = useContext(BookingContext);
-    console.log(bookings)
+    const { bookings, getBookings } = useContext(BookingContext);
+    const token = localStorage.getItem('token');
+    useEffect(() => {
+        console.log("Bookings in component:", bookings);
+    }, [bookings]);
     return (
         <>
             <div>
