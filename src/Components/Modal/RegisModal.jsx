@@ -20,7 +20,6 @@ function RegisModal({ mentors }) {
   const { mentorships, fetchMentorships } = useContext(BookingContext);
   useEffect(() => {
     if (mentors) {
-      // Ensure mentors data is available before calling
       fetchMentorships(mentors);
     }
   }, [mentors, fetchMentorships]);
@@ -140,6 +139,7 @@ function RegisModal({ mentors }) {
                 </Form.Control.Feedback>
               </Form.Group>
 
+              {/* input nomor hp */}
               <Form.Group className="mb-3 text-start" controlId="inputNomor">
                 <Form.Label>Nomor Handphone (WA)</Form.Label>
                 <Form.Control 
@@ -152,6 +152,7 @@ function RegisModal({ mentors }) {
                 </Form.Control.Feedback>
               </Form.Group>
 
+              {/* input alasan */}
               <Form.Group className="mb-3 text-start" controlId="inputAlasan">
                 <Form.Label>Alasan anda mendaftar mentorship ini</Form.Label>
                 <Form.Control 
@@ -165,7 +166,7 @@ function RegisModal({ mentors }) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              {/* tambah value nanti untuk display data dari api */}
+              {/* mentor */}
               <Form.Group className="mb-3 text-start" controlId="mentor">
                 <Form.Label>Mentor</Form.Label>
                 <Form.Control
@@ -179,6 +180,7 @@ function RegisModal({ mentors }) {
                 />
               </Form.Group>
 
+              {/* drop down mentorship class */}
               <Form.Group className="mb-4 text-start" controlId="mentorship">
                 <Form.Label>Kelas Mentorship</Form.Label>
                 <Form.Select

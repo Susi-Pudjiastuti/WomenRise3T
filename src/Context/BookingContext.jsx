@@ -48,7 +48,7 @@ function BookingProvider({ children }) {
     //mengambil mentorship untuk ditampilkan di modal
     const fetchMentorships = useCallback(async (mentors) => {
         const mentorId = mentors?._id;
-        // console.log("mentorid:" + mentorId);
+        console.log("mentorid:" + mentorId);
         try {
             const response = await axios.get(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentorships?mentorId=${mentorId}`, {
             });
@@ -61,9 +61,25 @@ function BookingProvider({ children }) {
         }
     }, []);
 
+    
+    const fetchMentorshipsCard = useCallback(async (mentors) => {
+        const mentorId = mentors?._id;
+        // console.log("mentorid:", mentorId);
+        if (!mentorId) return; // Ensure mentorId is valid before making the request
+        try {
+            const response = await axios.get(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentorships?mentorId=${mentorId}`);
+            setMentorships(response.data.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching mentorships:', error);
+            setError(error.message);
+            setLoading(false);
+        }
+    }, []);
+
     //menambahkan booking 
     const addBooking = async(booking) => {
-        const token = localStorage.token;
+        // const token = localStorage.token;
         console.log("token: " + token)
         console.log(booking.namaPendaftar)
         setLoading(true)
@@ -104,8 +120,11 @@ function BookingProvider({ children }) {
         }
     }
 
+    // fungsi delete booking
+    // const deleteBooking
+
     return (
-        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships }}>
+        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard }}>
             {children}
         </BookingContext.Provider>
     )
