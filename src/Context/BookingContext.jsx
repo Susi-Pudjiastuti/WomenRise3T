@@ -61,7 +61,7 @@ function BookingProvider({ children }) {
         }
     }, []);
 
-    const deleteBooking = async (bookingId) => {
+    const deleteBooking = async () => {
         const token = localStorage.token;
         setLoading(true);
 
@@ -72,13 +72,13 @@ function BookingProvider({ children }) {
         }
 
         try {
-            await axios.delete(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings/${bookingId}`, {
+            await axios.delete(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings/}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
             });
 
-            setBookings(prevBookings => prevBookings.filter(booking => booking._id !== bookingId));
+
             setLoading(false);
             return true;
         } catch (error) {
