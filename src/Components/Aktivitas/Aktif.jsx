@@ -1,26 +1,20 @@
 // Aktif.jsx
 import React, { useContext, useEffect } from 'react';
-import { ActivityContext } from '../../Context/ActivityContext';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { BookingContext } from '../../Context/BookingContext';
+import { BsCalendar, BsClock } from 'react-icons/bs';
 
 const Aktif = () => {
-    const { activities, cancelActivity } = useContext(ActivityContext);
-    const { bookings, getBookings } = useContext(BookingContext);
-    const mentorshipStatus = true
+    const { bookings, getBookings, deleteBooking } = useContext(BookingContext);
+    const mentorshipStatus = true;
 
     useEffect(() => {
-        if (bookings) { // Ensure mentors data is available before calling
-            getBookings(mentorshipStatus)
-            
-        }
-    
-    }, []);
-
+        getBookings(mentorshipStatus);
+    }, [getBookings, mentorshipStatus]);
     console.log("Bookings in aktif component:", bookings);
 
-    const handleCancel = (id) => {
+    const handleCancel = () => {
         Swal.fire({
             title: 'Batalkan',
             text: "Apakah anda yakin ingin membatalkan mentorship ini?",
@@ -32,7 +26,7 @@ const Aktif = () => {
             cancelButtonText: 'Tidak',
         }).then((result) => {
             if (result.isConfirmed) {
-                cancelActivity(id);
+                deleteBooking();
                 Swal.fire(
                     'Dibatalkan!',
                     'Aktivitas telah dibatalkan.',
@@ -43,34 +37,33 @@ const Aktif = () => {
     };
 
     return (
-        <div className="mt-4">
-            <Row>
-                {activities.length === 0 ? (
-                    <Col>
-                        <p>Tidak ada aktivitas yang aktif</p>
-                    </Col>
-                ) : (
-                    activities.map(activity => (
-                        <Col md={4} key={activity.id} className="mb-3">
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title>{activity.name}</Card.Title>
-                                    <Card.Text>
-                                        <strong>Tanggal: {activity.date}</strong><br />
-                                        <span>Waktu: {activity.time}</span>
-                                    </Card.Text>
-                                    <Button
-                                        variant="danger"
-                                        onClick={() => handleCancel(activity.id)}
-                                    >
-                                        Batal
-                                    </Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))
-                )}
-            </Row>
+        <div>
+            {bookings.length === 0 ? (
+                <p>Tidak ada aktivitas yang aktif</p>
+            ) : (
+                bookings.map(booking => (
+                    <Card key={booking._id} className="m-3">
+                        <Card.Body>
+                            <Row className="align-items-center">
+                                <Col xs={12} md={3}>
+                                    <span>{booking.mentorship.mentor}</span> {/* Menampilkan nama mentor */}
+                                </Col>
+                                <Col xs={12} md={3} className="d-flex align-items-center">
+                                    <BsCalendar className="me-2" />
+                                    <span>{new Date(booking.mentorship.tanggal).toLocaleDateString()}</span> {/* Menampilkan tanggal */}
+                                </Col>
+                                <Col xs={12} md={4} className="d-flex align-items-center">
+                                    <BsClock className="me-2" />
+                                    <span>{booking.mentorship.jam}</span> {/* Menampilkan jam */}
+                                </Col>
+                                <Col xs={12} md={2} className="text-md-end">
+                                    <Button variant="primary" onClick={() => handleCancel(booking._id)}>Batal</Button>
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>
+                ))
+            )}
         </div>
     );
 };

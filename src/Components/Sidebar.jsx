@@ -11,6 +11,8 @@ const Sidebar = () => {
     const handleLogOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        localStorage.removeItem('lastGeneratedDate');
+        localStorage.removeItem('limit');
         window.location.reload();
     }
     const ava = JSON.parse(localStorage.getItem('user'));

@@ -35,7 +35,7 @@ export const UserProvider = ({ children }) => {
     const handlePasswordReset = async (newPassword) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put('https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/user/update/password',
+            await axios.put('https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/users/update/password',
                 { password: newPassword },
                 {
                     headers: {
@@ -54,7 +54,7 @@ export const UserProvider = ({ children }) => {
     const handleEmailReset = async (newEmail) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put('https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/user/update/email',
+            await axios.put('https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/users/update/email',
                 { email: newEmail },
                 {
                     headers: {

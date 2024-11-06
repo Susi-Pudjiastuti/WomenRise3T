@@ -123,8 +123,36 @@ function BookingProvider({ children }) {
     // fungsi delete booking
     // const deleteBooking
 
+
+    const deleteBooking = async () => {
+        const token = localStorage.token;
+        setLoading(true);
+
+        if (!token) {
+            console.error("Token not available or invalid");
+            setLoading(false);
+            return false;
+        }
+
+        try {
+            await axios.delete(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings/}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+
+            setLoading(false);
+            return true;
+        } catch (error) {
+            console.error('Error deleting booking:', error);
+            setError(error.message);
+            setLoading(false);
+            return false;
+        }
+    };
     return (
-        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard }}>
+        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard, deleteBooking }}>
             {children}
         </BookingContext.Provider>
     )
