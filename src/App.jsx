@@ -21,6 +21,7 @@ import { UserProvider } from './Context/UserContext';
 import LandingFull from './Pages/LandingFull';
 import Layout from './layout/layout';
 import BookingProvider from './Context/BookingContext';
+import Scholarships from './Pages/Scholarships';
 
 
 
@@ -58,6 +59,10 @@ function App() {
       {
         path: "mentor",
         element: <Mentor />,
+      },
+      {
+        path: "scholarships",
+        element: <Scholarships />,
       },
     ]
   },
