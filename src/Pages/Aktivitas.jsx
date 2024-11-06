@@ -8,11 +8,7 @@ import Riwayat from '../Components/Aktivitas/Riwayat';
 import { BookingContext } from "../Context/BookingContext";
 
 function Aktivitas() {
-    const { bookings, getBookings } = useContext(BookingContext);
-    const token = localStorage.getItem('token');
-    useEffect(() => {
-        console.log("Bookings in component:", bookings);
-    }, [bookings]);
+
     return (
         <>
             <div>
@@ -22,7 +18,7 @@ function Aktivitas() {
                             <Sidebar />
                         </Col>
                         <Col>
-                            <div className="container mt-2" style={{ fontFamily: "Inter, Sans-serif" }}>
+                            <div className="container mt-2">
                                 <h1>Aktivitas Mentorship</h1>
                                 <p>Aktivitas Mentorship yang telah anda daftar</p>
                                 <ActivityProvider>
