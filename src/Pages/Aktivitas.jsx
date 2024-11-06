@@ -1,18 +1,13 @@
-import React, { useContext, useEffect } from "react"
+import React from "react"
 import Sidebar from "../Components/Sidebar"
 import { Col, Row, Container } from "react-bootstrap"
-import { ActivityProvider } from '../Context/ActivityContext';
 import { Tabs, Tab } from 'react-bootstrap';
 import Aktif from '../Components/Aktivitas/Aktif';
 import Riwayat from '../Components/Aktivitas/Riwayat';
-import { BookingContext } from "../Context/BookingContext";
+
 
 function Aktivitas() {
-    const { bookings, getBookings } = useContext(BookingContext);
-    const token = localStorage.getItem('token');
-    useEffect(() => {
-        console.log("Bookings in component:", bookings);
-    }, [bookings]);
+
     return (
         <>
             <div>
@@ -22,19 +17,19 @@ function Aktivitas() {
                             <Sidebar />
                         </Col>
                         <Col>
-                            <div className="container mt-2" style={{ fontFamily: "Inter, Sans-serif" }}>
+                            <div className="container mt-2">
                                 <h1>Aktivitas Mentorship</h1>
                                 <p>Aktivitas Mentorship yang telah anda daftar</p>
-                                <ActivityProvider>
-                                    <Tabs defaultActiveKey="aktif" >
-                                        <Tab eventKey="aktif" title="Aktif">
-                                            <Aktif />
-                                        </Tab>
-                                        <Tab eventKey="riwayat" title="Riwayat">
-                                            <Riwayat />
-                                        </Tab>
-                                    </Tabs>
-                                </ActivityProvider>
+
+                                <Tabs defaultActiveKey="aktif" variant="underline" >
+                                    <Tab eventKey="aktif" title="Aktif">
+                                        <Aktif />
+                                    </Tab>
+                                    <Tab eventKey="riwayat" title="Riwayat">
+                                        <Riwayat />
+                                    </Tab>
+                                </Tabs>
+
                             </div>
                         </Col>
                     </Row>
