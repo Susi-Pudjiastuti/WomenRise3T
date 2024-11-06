@@ -20,6 +20,7 @@ import SignUp from './Components/SignUp'
 import { UserProvider } from './Context/UserContext';
 import LandingFull from './Pages/LandingFull';
 import Layout from './layout/layout';
+import BookingProvider from './Context/BookingContext';
 
 
 
@@ -84,7 +85,9 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <MentorContextProvider>
           <UserProvider>
-            <RouterProvider router={router} />
+            <BookingProvider>
+              <RouterProvider router={router} />
+            </BookingProvider>
           </UserProvider>
         </MentorContextProvider>
       </QueryClientProvider>
