@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +17,7 @@ function Motivation() {
     // default 3 jika tidak ada saved limit (belum dipencet)
     const [limit, setLimit] = useState(() => {
         const savedLimit = parseInt(localStorage.getItem('limit'), 10);
-        return isNaN(savedLimit) ? 3 : savedLimit;
+        return isNaN(savedLimit) ? 2 : savedLimit;
     });
 
     // Function to check if the limit needs to reset based on the date
@@ -29,7 +28,7 @@ function Motivation() {
         if (savedDate !== today) {
             localStorage.setItem('limit', 3); // Reset limit to 3
             localStorage.setItem('lastGeneratedDate', today); // Save today's date
-            setLimit(3);
+            setLimit(2);
         }
     };
 
@@ -80,8 +79,6 @@ function Motivation() {
             <div className='my-5 min-vh-100'>
                 <h2 className='text-center text-blue' style={{ fontSize: '2rem', fontWeight: 'bold' }}>AI RiseGuide3T✨</h2>
                 <div className='d-flex flex-column justify-content-center align-items-center'>
-                    {/* <Button onClick={handleInput}>Generate motivation</Button>
-                    <p>Limit: {limit}/3</p> */}
                 </div>
 
                 <Container className="mt-5 w-75 mx-auto">
@@ -89,16 +86,8 @@ function Motivation() {
                     <div className=' border shadow p-3 my-5 bg-body rounded text-center' style={{ height: 'auto' }} >
 
                         <button className="btn btn-primary" onClick={handleGenerate} id="btn-more" >Generate</button>
-                        {localStorage.token ? <p>Limit : {limit}</p> : ""}
+                        {localStorage.token ? <p class="text-muted">Limit : {limit}/2</p> : ""}
                         <div className='my-5'>
-                            {/* {!localStorage.token && <h4 className='text-center py-3 my-5'>
-                                <Typewriter
-                                    options={{
-                                        strings: "Hello! Welcome to AI RiseGuide3T, your personal companion on the journey to achieving your scholarship dreams. We're here to inspire, guide, and empower you every step of the way with personalized motivation tailored just for you🎀",
-                                        autoStart: true,
-                                        delay: 30,
-                                    }} />
-                            </h4>} */}
                             {loading ? <h5 className="text-blue"><Typewriter
                                 options={{
                                     strings: `Generate personal motivation for ${user.namaLengkap} from ${user.asalDaerah}✨`,
