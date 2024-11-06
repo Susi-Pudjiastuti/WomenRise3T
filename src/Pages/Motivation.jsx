@@ -26,7 +26,7 @@ function Motivation() {
         const savedDate = localStorage.getItem('lastGeneratedDate');
 
         if (savedDate !== today) {
-            localStorage.setItem('limit', 3); // Reset limit to 3
+            localStorage.setItem('limit', 2); // Reset limit to 3
             localStorage.setItem('lastGeneratedDate', today); // Save today's date
             setLimit(2);
         }
