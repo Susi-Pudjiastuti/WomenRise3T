@@ -6,25 +6,21 @@ import { BsCalendar, BsClock } from 'react-icons/bs';
 
 
 const Riwayat = () => {
-    const { bookings, getBookings } = useContext(BookingContext);
-    const mentorshipStatus = false;
+    const { bookingsFalse, getBookings } = useContext(BookingContext);
     useEffect(() => {
-        if (bookings) { // Ensure mentors data is available before calling
-            getBookings(mentorshipStatus)
-        }
+            getBookings()
+        },[]);
 
-    }, []);
-
-    console.log("Bookings in riwayat component:", bookings);
+    console.log("bookingsFalse in riwayat component:", bookingsFalse);
 
 
 
     return (
         <div>
-            {bookings.length === 0 ? (
+            {bookingsFalse.length === 0 ? (
                 <p>Tidak ada riwayat</p>
             ) : (
-                bookings.map(booking => (
+                bookingsFalse.map(booking => (
                     <Card key={booking._id} className="my-3">
                         <Card.Body>
                             <Row className="align-items-center">

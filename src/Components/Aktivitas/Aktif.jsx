@@ -6,13 +6,13 @@ import { BookingContext } from '../../Context/BookingContext';
 import { BsCalendar, BsClock } from 'react-icons/bs';
 
 const Aktif = () => {
-    const { bookings, getBookings, deleteBooking } = useContext(BookingContext);
-    const mentorshipStatus = true;
+    const { bookings, getBookingsTrue, deleteBooking } = useContext(BookingContext);
+
 
     useEffect(() => {
-        getBookings(mentorshipStatus);
-    }, [getBookings, mentorshipStatus]);
-    console.log("Bookings in aktif component:", bookings);
+        getBookingsTrue();
+    }, []);
+    console.log("aktif component:", bookings);
 
     const handleCancel = () => {
         Swal.fire({

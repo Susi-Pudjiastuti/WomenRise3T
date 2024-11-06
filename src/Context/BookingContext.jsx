@@ -6,12 +6,13 @@ export const BookingContext = createContext();
 
 function BookingProvider({ children }) {
     const [bookings, setBookings] = useState([]);
+    const [bookingsFalse, setBookingsFalse] = useState([]);
     const [mentorships, setMentorships] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     //function untuk mengambil data booking user
-    const getBookings = useCallback(async (mentorshipStatus) => {
+    const getBookings = useCallback(async () => {
         const token = localStorage.token;
         // console.log("token: " + token)
         setLoading(true)
@@ -23,11 +24,37 @@ function BookingProvider({ children }) {
         }
 
         try {
-            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings`;
-            if (mentorshipStatus) {
-                URL += `?mentorshipStatus=${mentorshipStatus}`;
-            }
+            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=false`;
 
+            const response = await axios.get(URL, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            // console.log("Response data:", response.data.data);
+
+            setBookingsFalse(response.data.data);
+            setLoading(false);
+        } catch (e) {
+            console.log(e)
+            setError(e.message)
+            setLoading(false)
+        }
+    }, []);
+
+    const getBookingsTrue = async () => {
+        const token = localStorage.token;
+        // console.log("token: " + token)
+        setLoading(true)
+
+        if (!token) {
+            console.error("Token not available or invalid");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=true`;
 
             const response = await axios.get(URL, {
                 headers: {
@@ -43,8 +70,7 @@ function BookingProvider({ children }) {
             setError(e.message)
             setLoading(false)
         }
-    }, [])
-
+    }
     //mengambil mentorship untuk ditampilkan di modal
     const fetchMentorships = useCallback(async (mentors) => {
         const mentorId = mentors?._id;
@@ -152,7 +178,7 @@ function BookingProvider({ children }) {
         }
     };
     return (
-        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard, deleteBooking }}>
+        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard, deleteBooking, getBookingsTrue, bookingsFalse }}>
             {children}
         </BookingContext.Provider>
     )

@@ -7,7 +7,7 @@ import Riwayat from '../Components/Aktivitas/Riwayat';
 
 
 function Aktivitas() {
-
+    
     return (
         <>
             <div>
