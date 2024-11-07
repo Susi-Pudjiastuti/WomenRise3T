@@ -85,3 +85,57 @@ export async function GenerateMotivation() {
     });
   }
 }
+
+export async function fetchScholarship() {
+  try {
+    let endpoint = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/scholarships`;
+
+    // fetch
+    const response = await axios({
+      url: endpoint,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Something went wrong! ${error.response.data.message}`,
+      });
+    }
+    throw error;
+  }
+}
+
+export async function addScholarship({ input }) {
+  let endpoint =
+    "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/scholarships";
+
+  const { data } = await axios({
+    url: endpoint,
+    method: "POST",
+    data: input,
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  });
+  return data;
+}
+
+export async function deleteScholarship({ id }) {
+  let endpoint = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/scholarships/${id}`;
+
+  const { data } = await axios({
+    url: endpoint,
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  });
+  return data;
+}
