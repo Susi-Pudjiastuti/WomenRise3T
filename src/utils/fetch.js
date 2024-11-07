@@ -85,3 +85,53 @@ export async function GenerateMotivation() {
     });
   }
 }
+
+export async function fetchScholarship() {
+  try {
+    let endpoint = `http://localhost:3000/scholarships`;
+
+    // fetch
+    const response = await axios({
+      url: endpoint,
+      method: "GET",
+    });
+
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Something went wrong! ${error.response.data.message}`,
+      });
+    }
+    throw error;
+  }
+}
+
+export async function addScholarship({ input }) {
+  let endpoint = "http://localhost:3000/scholarships";
+
+  const { data } = await axios({
+    url: endpoint,
+    method: "POST",
+    data: input,
+    // headers: {
+    //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgyLCJpYXQiOjE3Mjk2MDM0NzV9.XzpFnBkgaGizRuPoNWJkNReuPdez2ZIvQIczoilNK7g`,
+    // },
+  });
+  return data;
+}
+
+export async function deleteScholarship({ id }) {
+  let endpoint = `http://localhost:3000/scholarships/${id}`;
+
+  const { data } = await axios({
+    url: endpoint,
+    method: "DELETE",
+    // headers: {
+    //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgyLCJpYXQiOjE3Mjk2MDM0NzV9.XzpFnBkgaGizRuPoNWJkNReuPdez2ZIvQIczoilNK7g`,
+    // },
+  });
+  return data;
+}
