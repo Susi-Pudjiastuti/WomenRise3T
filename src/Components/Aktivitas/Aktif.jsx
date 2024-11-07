@@ -56,9 +56,9 @@ const Aktif = () => {
                                     <BsClock className="me-2" />
                                     <span>{booking.mentorship.jam}</span> {/* Menampilkan jam */}
                                 </Col>
-                                <Col xs={12} md={2} className="text-md-end">
+                                {/* <Col xs={12} md={2} className="text-md-end">
                                     <Button variant="primary" onClick={() => handleCancel(booking._id)}>Batal</Button>
-                                </Col>
+                                </Col> */}
                             </Row>
                         </Card.Body>
                     </Card>
