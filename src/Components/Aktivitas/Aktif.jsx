@@ -4,6 +4,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { BookingContext } from '../../Context/BookingContext';
 import { BsCalendar, BsClock } from 'react-icons/bs';
+import { format } from "date-fns";
 
 const Aktif = () => {
     const { bookings, deleteBooking, getBookings } = useContext(BookingContext);
@@ -51,22 +52,25 @@ const Aktif = () => {
                 <p>Tidak ada aktivitas yang aktif</p>
             ) : (
                 bookings.map(booking => (
-                    <Card key={booking._id} className="m-3">
+                    <Card key={booking._id} className="m-3 pe-4">
                         <Card.Body>
                             <Row className="align-items-center">
+                                <Col xs={12} md={2}>
+                                    <span>{booking.mentorship.mentor.namaLengkap}</span> {/* Menampilkan nama mentor */}
+                                </Col>
                                 <Col xs={12} md={3}>
-                                    <span>{booking.mentorship.mentor}</span> {/* Menampilkan nama mentor */}
+                                    <span>{booking?.mentorship.tema}</span>
                                 </Col>
                                 <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsCalendar className="me-2" />
-                                    <span>{new Date(booking.mentorship.tanggal).toLocaleDateString()}</span> {/* Menampilkan tanggal */}
+                                    <span>{format(booking.mentorship.tanggal, "dd MMMM yyyy")}</span> {/* Menampilkan tanggal */}
                                 </Col>
-                                <Col xs={12} md={4} className="d-flex align-items-center">
+                                <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsClock className="me-2" />
                                     <span>{booking.mentorship.jam}</span> {/* Menampilkan jam */}
                                 </Col>
-                                <Col xs={12} md={2} className="text-md-end">
-                                    <Button variant="primary" onClick={() => handleCancel(booking._id)}>Batal</Button>
+                                <Col xs={12} md={1} className="text-md-end">
+                                    <Button variant="danger" onClick={() => handleCancel(booking._id)}>Batal</Button>
                                 </Col>
                             </Row>
                         </Card.Body>
