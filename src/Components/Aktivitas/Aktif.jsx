@@ -46,7 +46,7 @@ const Aktif = () => {
                         <Card.Body>
                             <Row className="align-items-center">
                                 <Col xs={12} md={3}>
-                                    <span>{booking.mentorship.mentor}</span> {/* Menampilkan nama mentor */}
+                                    <span>{booking.mentorship.mentor.namaLengkap}</span> {/* Menampilkan nama mentor */}
                                 </Col>
                                 <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsCalendar className="me-2" />
