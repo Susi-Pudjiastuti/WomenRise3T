@@ -33,14 +33,11 @@ const Riwayat = () => {
                                 <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsCalendar className="me-2" />
                                     <span>{format(booking?.mentorship.tanggal, "dd MMMM yyyy")}</span>
-                                    
+
                                 </Col>
                                 <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsClock className="me-2" />
                                     <span>{booking?.mentorship.jam}</span>
-                                </Col>
-                                <Col xs={12} md={2} className="text-md-end">
-                                    <Button disabled style={{ backgroundColor: "gray", border: "gray" }} onClick={() => handleCancel(booking._id)}>Selesai</Button>
                                 </Col>
                             </Row>
                         </Card.Body>
