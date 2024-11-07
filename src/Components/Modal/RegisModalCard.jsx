@@ -179,9 +179,9 @@ function RegisModalCard({ mentor }) {
                   
                   {Array.isArray(mentorships) ? (
                     mentorships.map((mentorship) => (
-                      <option key={mentorship._id} value={mentorship._id}>
-                        {formatDate(mentorship.tanggal)} | {mentorship.jam} |{" "}
-                        {mentorship.tema} | Sisa slot: {mentorship.slot}
+                      <option key={mentorship?._id} value={mentorship?._id}>
+                        {formatDate(mentorship?.tanggal)} | {mentorship?.jam} |{" "}
+                        {mentorship?.tema} | Sisa slot: {mentorship?.slot}
                       </option>
                     ))
                   ) : (
