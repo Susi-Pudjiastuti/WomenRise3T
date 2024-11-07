@@ -41,11 +41,12 @@ function Navbar() {
                                 >Motivation
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
+                            {localStorage.getItem('token') && <li className="nav-item">
                                 <NavLink to="/scholarships" style={({ isActive }) => { return { color: isActive ? "#004987" : "black", fontWeight: isActive ? "bold" : "" }; }}
                                 >Scholarship
                                 </NavLink>
-                            </li>
+                            </li>}
+
                         </ul>
 
                         {/* <div className="my-4 my-lg-0 d-flex gap-2 align-items-center">
