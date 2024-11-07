@@ -8,14 +8,14 @@ import { BsCalendar, BsClock } from 'react-icons/bs';
 const Aktif = () => {
     const { bookings, deleteBooking, getBookings } = useContext(BookingContext);
 
-
     useEffect(() => {
         getBookings(true);
     }, []);
+
     console.log("aktif component:", bookings);
 
-    const handleCancel = () => {
-        Swal.fire({
+    const handleCancel = async (bookingId) => {
+        const result = await Swal.fire({
             title: 'Batalkan',
             text: "Apakah anda yakin ingin membatalkan mentorship ini?",
             icon: 'warning',
@@ -24,16 +24,25 @@ const Aktif = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya',
             cancelButtonText: 'Tidak',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                deleteBooking();
+        });
+
+        if (result.isConfirmed) {
+            const success = await deleteBooking(bookingId);
+
+            if (success) {
                 Swal.fire(
                     'Dibatalkan!',
                     'Aktivitas telah dibatalkan.',
                     'success'
                 );
+            } else {
+                Swal.fire(
+                    'Gagal!',
+                    'Terjadi kesalahan saat membatalkan aktivitas.',
+                    'error'
+                );
             }
-        });
+        }
     };
 
     return (

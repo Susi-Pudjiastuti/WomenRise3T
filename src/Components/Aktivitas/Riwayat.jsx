@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row, Button } from 'react-bootstrap';
 import { BookingContext } from '../../Context/BookingContext';
 import { BsCalendar, BsClock } from 'react-icons/bs';
 
@@ -16,7 +16,7 @@ const Riwayat = () => {
 
 
     return (
-        <div>
+        <div className='p-3'>
             {bookingsFalse.length === 0 ? (
                 <p>Tidak ada riwayat</p>
             ) : (
@@ -34,6 +34,9 @@ const Riwayat = () => {
                                 <Col xs={12} md={4} className="d-flex align-items-center">
                                     <BsClock className="me-2" />
                                     <span>{booking.mentorship.jam}</span>
+                                </Col>
+                                <Col xs={12} md={2} className="text-md-end">
+                                    <Button disabled style={{ backgroundColor: "gray", border: "gray" }} onClick={() => handleCancel(booking._id)}>Selesai</Button>
                                 </Col>
                             </Row>
                         </Card.Body>
