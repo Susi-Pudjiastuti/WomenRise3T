@@ -6,11 +6,11 @@ import { BookingContext } from '../../Context/BookingContext';
 import { BsCalendar, BsClock } from 'react-icons/bs';
 
 const Aktif = () => {
-    const { bookings, getBookingsTrue, deleteBooking } = useContext(BookingContext);
+    const { bookings, deleteBooking, getBookings } = useContext(BookingContext);
 
 
     useEffect(() => {
-        getBookingsTrue();
+        getBookings(true);
     }, []);
     console.log("aktif component:", bookings);
 
