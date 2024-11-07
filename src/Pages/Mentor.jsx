@@ -10,6 +10,7 @@ import { MentorContext } from "../Context/MentorContext";
 import NotFound from "../Components/Mentor/NotFound";
 import 'react-loading-skeleton/dist/skeleton.css'
 import Skeleton from "react-loading-skeleton";
+import NotLoggedIn from '../Components/NotLoggedIn';
 
 function Mentor() {
     const { searchMentor, setDataMentor, studi, page, daerah } = useContext(MentorContext)
@@ -57,6 +58,7 @@ function Mentor() {
                     </div>
                 </div>
             </div>
+            {!localStorage.getItem('token') && <NotLoggedIn />}
         </>
     )
 }

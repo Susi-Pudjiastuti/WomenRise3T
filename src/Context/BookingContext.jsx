@@ -14,9 +14,9 @@ function BookingProvider({ children }) {
     //function untuk mengambil data booking user
     const getBookings = useCallback(async (mentorshipStatus) => {
         const token = localStorage.token;
-        // console.log("token: " + token)
+        console.log("token: " + token)
         setLoading(true)
-        // console.log(mentorshipStatus)
+        console.log(mentorshipStatus)
         if (!token) {
             console.error("Token not available or invalid");
             setLoading(false);
@@ -26,16 +26,16 @@ function BookingProvider({ children }) {
         try {
             let URL = ""
             let setState
-            if (mentorshipStatus){
+            if (mentorshipStatus) {
                 URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=true`;
                 setState = setBookings
 
-            }else {
+            } else {
                 URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=false`;
                 setState = setBookingsFalse
 
             }
-            
+
 
             const response = await axios.get(URL, {
                 headers: {
@@ -54,7 +54,7 @@ function BookingProvider({ children }) {
         }
     }, []);
 
-    
+
     //mengambil mentorship untuk ditampilkan di modal
     const fetchMentorships = useCallback(async (mentors) => {
         const mentorId = mentors?._id;
@@ -73,7 +73,7 @@ function BookingProvider({ children }) {
 
 
     //menambahkan booking 
-    const addBooking = async(booking) => {
+    const addBooking = async (booking) => {
         const token = localStorage.token;
         // console.log("token: " + token)
         console.log(booking)
@@ -86,7 +86,7 @@ function BookingProvider({ children }) {
         }
 
         try {
-            const response = await axios.post(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings`, 
+            const response = await axios.post(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings`,
                 {
                     namaPendaftar: booking.namaPendaftar,
                     emailPendaftar: booking.emailPendaftar,
@@ -105,8 +105,8 @@ function BookingProvider({ children }) {
                 title: "Booking Berhasil!",
                 text: "Anda telah terdaftar untuk sesi mentoring. Tunggu maksimal 1 x 24 jam anda akan  di-Invite ke WhatsApp Grup.",
                 icon: "success",
-              });
-            
+            });
+
         } catch (error) {
             console.error('Error adding mentorships:', error);
             setError(error.message)
@@ -117,7 +117,7 @@ function BookingProvider({ children }) {
     }
 
     // fungsi delete booking
-    const deleteBooking = async () => {
+    const deleteBooking = async (bookingId) => {
         const token = localStorage.token;
         setLoading(true);
 
@@ -131,9 +131,12 @@ function BookingProvider({ children }) {
             await axios.delete(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 },
             });
 
+
+            setBookings(prevBookings => prevBookings.filter(booking => booking._id !== bookingId));
 
             setLoading(false);
             return true;

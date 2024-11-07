@@ -80,6 +80,7 @@ function RegisModalCard({ mentor }) {
       [event.target.name]: event.target.value
     })
   }
+  
   return (
     <div>
       {/* tombol "daftar sekarang"  */}
@@ -175,11 +176,12 @@ function RegisModalCard({ mentor }) {
                     name="mentorship"
                     onChange={handleChange}>
                   <option value="">Pilih jadwal mentorship</option>
+                  
                   {Array.isArray(mentorships) ? (
                     mentorships.map((mentorship) => (
-                      <option key={mentorship._id} value={mentorship._id}>
-                        {formatDate(mentorship.tanggal)} | {mentorship.jam} |{" "}
-                        {mentorship.tema} | Sisa slot: {mentorship.slot}
+                      <option key={mentorship?._id} value={mentorship?._id}>
+                        {formatDate(mentorship?.tanggal)} | {mentorship?.jam} |{" "}
+                        {mentorship?.tema} | Sisa slot: {mentorship?.slot}
                       </option>
                     ))
                   ) : (
