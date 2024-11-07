@@ -64,6 +64,12 @@ function App() {
       {
         path: "scholarships",
         element: <Scholarships />,
+        loader: () => {
+          if (!localStorage.token) {
+            return redirect("/login");
+          }
+          return null;
+        }
       },
       {
         path: "scholarships/add",

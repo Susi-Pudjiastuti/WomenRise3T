@@ -8,7 +8,7 @@ import Riwayat from '../Components/Aktivitas/Riwayat';
 function Aktivitas() {
 
     return (
-        <Container fluid className="d-flex justify-content-center align-items-center">
+        <Container fluid className="d-flex justify-content-center align-items-center my-5">
             <Row className="w-100 align-items-start" style={{ margin: '0 15px' }}>
                 <Col md={4} className="d-md-flex justify-content-center align-items-stretch mb-3">
                     <Sidebar />
