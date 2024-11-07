@@ -11,7 +11,7 @@ const Riwayat = () => {
         getBookings(false)
     }, []);
 
-    console.log("bookingsFalse in riwayat component:", bookingsFalse);
+    // console.log("bookingsFalse in riwayat component:", bookingsFalse);
 
 
 
