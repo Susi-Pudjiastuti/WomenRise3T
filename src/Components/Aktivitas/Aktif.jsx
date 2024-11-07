@@ -46,7 +46,7 @@ const Aktif = () => {
     };
 
     return (
-        <div>
+        <div style={{ overflowY: 'auto', maxHeight: '400px' }}>
             {bookings.length === 0 ? (
                 <p>Tidak ada aktivitas yang aktif</p>
             ) : (
