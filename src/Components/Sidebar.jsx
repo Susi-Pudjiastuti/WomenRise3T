@@ -19,7 +19,7 @@ const Sidebar = () => {
 
     return (
         <div>
-            <img src={ava.avatar} className='rounded-circle mb-3' style={{ width: '12rem', height: '12rem' }} />
+            <img src={ava.avatar} className='rounded-circle mb-3 object-fit-cover' style={{ width: '12rem', height: '12rem' }} />
             <Nav className="flex-column">
                 <div style={{
                     border: '1px solid #dbdad7',
