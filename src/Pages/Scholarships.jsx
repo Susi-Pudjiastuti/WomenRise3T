@@ -4,17 +4,13 @@ import { fetchScholarship } from "../utils/fetch"
 import { Button, Container, Row } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
-
-
-
 const Scholarships = () => {
   const navigate = useNavigate()
-  const { isPending: loading, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["scholarship"],
     queryFn: fetchScholarship
   })
   const scholarships = data?.data
-  console.log(scholarships)
 
   return (
     <>

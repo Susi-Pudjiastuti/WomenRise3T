@@ -5,6 +5,7 @@ import { Col } from 'react-bootstrap';
 import CloseButton from 'react-bootstrap/CloseButton';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteScholarship } from '../../utils/fetch';
+import Swal from "sweetalert2"
 
 
 function CardScholarship({ item }) {
