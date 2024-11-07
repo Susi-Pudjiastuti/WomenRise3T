@@ -16,7 +16,7 @@ function BookingProvider({ children }) {
         const token = localStorage.token;
         // console.log("token: " + token)
         setLoading(true)
-        console.log(mentorshipStatus)
+        // console.log(mentorshipStatus)
         if (!token) {
             console.error("Token not available or invalid");
             setLoading(false);
@@ -43,7 +43,7 @@ function BookingProvider({ children }) {
                 },
             });
             // console.log("Response data:", response.data.data);
-            console.log(setState)
+            // console.log(setState)
 
             setState(response.data.data);
             setLoading(false);
@@ -62,7 +62,7 @@ function BookingProvider({ children }) {
         try {
             const response = await axios.get(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentorships?mentorId=${mentorId}`, {
             });
-            setMentorships(response.data.data);
+            setMentorships(response.data.data.filter(item => item.status));
             setLoading(false);
         } catch (error) {
             console.error('Error fetching mentorships:', error);
@@ -71,27 +71,12 @@ function BookingProvider({ children }) {
         }
     }, []);
 
-    
-    const fetchMentorshipsCard = useCallback(async (mentors) => {
-        const mentorId = mentors?._id;
-        console.log("mentorid:", mentorId);
-        if (!mentorId) return; // Ensure mentorId is valid before making the request
-        try {
-            const response = await axios.get(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentorships?mentorId=${mentorId}`);
-            setMentorships(response.data.data);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching mentorships:', error);
-            setError(error.message);
-            setLoading(false);
-        }
-    }, []);
 
     //menambahkan booking 
     const addBooking = async(booking) => {
-        // const token = localStorage.token;
-        console.log("token: " + token)
-        console.log(booking.namaPendaftar)
+        const token = localStorage.token;
+        // console.log("token: " + token)
+        console.log(booking)
         setLoading(true)
 
         if (!token) {
@@ -121,6 +106,7 @@ function BookingProvider({ children }) {
                 text: "Anda telah terdaftar untuk sesi mentoring. Tunggu maksimal 1 x 24 jam anda akan  di-Invite ke WhatsApp Grup.",
                 icon: "success",
               });
+            
         } catch (error) {
             console.error('Error adding mentorships:', error);
             setError(error.message)
@@ -142,7 +128,7 @@ function BookingProvider({ children }) {
         }
 
         try {
-            await axios.delete(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings/}`, {
+            await axios.delete(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -159,7 +145,7 @@ function BookingProvider({ children }) {
         }
     };
     return (
-        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard, deleteBooking, bookingsFalse }}>
+        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, deleteBooking, bookingsFalse }}>
             {children}
         </BookingContext.Provider>
     )

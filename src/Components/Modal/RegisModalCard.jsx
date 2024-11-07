@@ -18,13 +18,7 @@ function RegisModalCard({ mentor }) {
 
   // console.log(mentor)
   //mentorhsips and fetchMentorships function from context============================
-  const { mentorships, fetchMentorshipsCard } = useContext(BookingContext);
-  // useEffect(() => {
-  //   if (mentor) {
-  //     fetchMentorshipsCard(mentor);
-  //     // console.log(fetchMentorshipsCard(mentor))
-  //   }
-  // }, [mentor, fetchMentorshipsCard]);
+  const { mentorships, fetchMentorships } = useContext(BookingContext);
 
   //booking
   const {addBooking} = useContext(BookingContext)
@@ -38,7 +32,7 @@ function RegisModalCard({ mentor }) {
 
   const handleModal = () => {
     //set agar modal menjadi kebalikannya ketika diclick
-    fetchMentorshipsCard(mentor)
+    fetchMentorships(mentor) //fetch mentorship untuk setiap mentor
     if (!localStorage.token) {
       Swal.fire({
         icon: "error",
@@ -71,7 +65,7 @@ function RegisModalCard({ mentor }) {
       e.preventDefault();
       e.stopPropagation();
     } else {
-      console.log(booking)
+      // console.log(booking)
       addBooking(booking)
       setModal(!modal)
     }
@@ -80,7 +74,7 @@ function RegisModalCard({ mentor }) {
 
   //handle change======================================================================
   function handleChange(event) {
-    // console.log(event.target.name, event.target.value); 
+    console.log(event.target.name, event.target.value); 
     setBooking({
       ...booking, 
       [event.target.name]: event.target.value
@@ -175,7 +169,11 @@ function RegisModalCard({ mentor }) {
               {/* drop down mentorship class */}
               <Form.Group className="mb-4 text-start" controlId="mentorship">
                 <Form.Label>Kelas Mentorship</Form.Label>
-                <Form.Select required aria-label="Default select example" className="mb-3">
+                <Form.Select required
+                    aria-label="Default select example"
+                    className="mb-3"
+                    name="mentorship"
+                    onChange={handleChange}>
                   <option value="">Pilih jadwal mentorship</option>
                   {Array.isArray(mentorships) ? (
                     mentorships.map((mentorship) => (

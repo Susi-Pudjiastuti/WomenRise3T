@@ -69,12 +69,13 @@ function RegisModal({ mentors }) {
       e.stopPropagation();
       
     } else {
-      console.log(booking)
-      addBooking(booking)
-      
+      // console.log(booking)
+      // console.log(addBooking(booking))
+      addBooking(booking)      
       setModal(!modal);
+      
     }
-
+    
     setValidated(true);
   };
 
@@ -85,6 +86,7 @@ function RegisModal({ mentors }) {
       ...booking, 
       [event.target.name]: event.target.value
     })
+    
   }
 
   return (
