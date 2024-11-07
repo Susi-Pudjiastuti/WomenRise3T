@@ -12,11 +12,11 @@ function BookingProvider({ children }) {
     const [error, setError] = useState(null);
 
     //function untuk mengambil data booking user
-    const getBookings = useCallback(async () => {
+    const getBookings = useCallback(async (mentorshipStatus) => {
         const token = localStorage.token;
         // console.log("token: " + token)
         setLoading(true)
-
+        console.log(mentorshipStatus)
         if (!token) {
             console.error("Token not available or invalid");
             setLoading(false);
@@ -24,7 +24,18 @@ function BookingProvider({ children }) {
         }
 
         try {
-            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=false`;
+            let URL = ""
+            let setState
+            if (mentorshipStatus){
+                URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=true`;
+                setState = setBookings
+
+            }else {
+                URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=false`;
+                setState = setBookingsFalse
+
+            }
+            
 
             const response = await axios.get(URL, {
                 headers: {
@@ -32,8 +43,9 @@ function BookingProvider({ children }) {
                 },
             });
             // console.log("Response data:", response.data.data);
+            console.log(setState)
 
-            setBookingsFalse(response.data.data);
+            setState(response.data.data);
             setLoading(false);
         } catch (e) {
             console.log(e)
@@ -42,35 +54,7 @@ function BookingProvider({ children }) {
         }
     }, []);
 
-    const getBookingsTrue = async () => {
-        const token = localStorage.token;
-        // console.log("token: " + token)
-        setLoading(true)
-
-        if (!token) {
-            console.error("Token not available or invalid");
-            setLoading(false);
-            return;
-        }
-
-        try {
-            let URL = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/bookings?mentorshipStatus=true`;
-
-            const response = await axios.get(URL, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-            // console.log("Response data:", response.data.data);
-
-            setBookings(response.data.data);
-            setLoading(false);
-        } catch (e) {
-            console.log(e)
-            setError(e.message)
-            setLoading(false)
-        }
-    }
+    
     //mengambil mentorship untuk ditampilkan di modal
     const fetchMentorships = useCallback(async (mentors) => {
         const mentorId = mentors?._id;
@@ -90,7 +74,7 @@ function BookingProvider({ children }) {
     
     const fetchMentorshipsCard = useCallback(async (mentors) => {
         const mentorId = mentors?._id;
-        // console.log("mentorid:", mentorId);
+        console.log("mentorid:", mentorId);
         if (!mentorId) return; // Ensure mentorId is valid before making the request
         try {
             const response = await axios.get(`https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/mentorships?mentorId=${mentorId}`);
@@ -147,9 +131,6 @@ function BookingProvider({ children }) {
     }
 
     // fungsi delete booking
-    // const deleteBooking
-
-
     const deleteBooking = async () => {
         const token = localStorage.token;
         setLoading(true);
@@ -178,7 +159,7 @@ function BookingProvider({ children }) {
         }
     };
     return (
-        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard, deleteBooking, getBookingsTrue, bookingsFalse }}>
+        <BookingContext.Provider value={{ bookings, addBooking, loading, error, getBookings, mentorships, fetchMentorships, fetchMentorshipsCard, deleteBooking, bookingsFalse }}>
             {children}
         </BookingContext.Provider>
     )
