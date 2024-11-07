@@ -14,7 +14,7 @@ function Motivation() {
     const user = JSON.parse(localStorage.getItem('user'))
     const navigate = useNavigate()
 
-    // default 3 jika tidak ada saved limit (belum dipencet)
+    // default 2 jika tidak ada saved limit (belum dipencet)
     const [limit, setLimit] = useState(() => {
         const savedLimit = parseInt(localStorage.getItem('limit'), 10);
         return isNaN(savedLimit) ? 2 : savedLimit;
@@ -26,7 +26,7 @@ function Motivation() {
         const savedDate = localStorage.getItem('lastGeneratedDate');
 
         if (savedDate !== today) {
-            localStorage.setItem('limit', 2); // Reset limit to 3
+            localStorage.setItem('limit', 2); // Reset limit to 2
             localStorage.setItem('lastGeneratedDate', today); // Save today's date
             setLimit(2);
         }
@@ -86,7 +86,7 @@ function Motivation() {
                     <div className=' border shadow p-3 my-5 bg-body rounded text-center' style={{ height: 'auto' }} >
 
                         <button className="btn btn-primary" onClick={handleGenerate} id="btn-more" >Generate</button>
-                        {localStorage.token ? <p class="text-muted">Limit : {limit}/2</p> : ""}
+                        {localStorage.token ? <p className="text-muted">Limit : {limit}/2</p> : ""}
                         <div className='my-5'>
                             {loading ? <h5 className="text-blue"><Typewriter
                                 options={{
