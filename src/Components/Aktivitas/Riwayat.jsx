@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row, Button } from 'react-bootstrap';
 import { BookingContext } from '../../Context/BookingContext';
 import { BsCalendar, BsClock } from 'react-icons/bs';
 import { format } from "date-fns";
@@ -8,15 +8,15 @@ import { format } from "date-fns";
 const Riwayat = () => {
     const { bookingsFalse, getBookings } = useContext(BookingContext);
     useEffect(() => {
-            getBookings(false)
-        },[]);
+        getBookings(false)
+    }, []);
 
     // console.log("bookingsFalse in riwayat component:", bookingsFalse);
 
 
 
     return (
-        <div>
+        <div className='p-3'>
             {bookingsFalse.length === 0 ? (
                 <p>Tidak ada riwayat</p>
             ) : (
@@ -33,7 +33,7 @@ const Riwayat = () => {
                                 <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsCalendar className="me-2" />
                                     <span>{format(booking?.mentorship.tanggal, "dd MMMM yyyy")}</span>
-                                    
+
                                 </Col>
                                 <Col xs={12} md={3} className="d-flex align-items-center">
                                     <BsClock className="me-2" />
