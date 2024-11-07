@@ -8,7 +8,7 @@ import { BsCalendar, BsClock } from 'react-icons/bs';
 const Riwayat = () => {
     const { bookingsFalse, getBookings } = useContext(BookingContext);
     useEffect(() => {
-            getBookings()
+            getBookings(false)
         },[]);
 
     console.log("bookingsFalse in riwayat component:", bookingsFalse);

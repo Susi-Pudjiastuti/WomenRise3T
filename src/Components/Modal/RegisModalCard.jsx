@@ -19,12 +19,12 @@ function RegisModalCard({ mentor }) {
   // console.log(mentor)
   //mentorhsips and fetchMentorships function from context============================
   const { mentorships, fetchMentorshipsCard } = useContext(BookingContext);
-  useEffect(() => {
-    if (mentor) {
-      fetchMentorshipsCard(mentor);
-      // console.log(fetchMentorshipsCard(mentor))
-    }
-  }, [mentor, fetchMentorshipsCard]);
+  // useEffect(() => {
+  //   if (mentor) {
+  //     fetchMentorshipsCard(mentor);
+  //     // console.log(fetchMentorshipsCard(mentor))
+  //   }
+  // }, [mentor, fetchMentorshipsCard]);
 
   //booking
   const {addBooking} = useContext(BookingContext)
@@ -38,6 +38,7 @@ function RegisModalCard({ mentor }) {
 
   const handleModal = () => {
     //set agar modal menjadi kebalikannya ketika diclick
+    fetchMentorshipsCard(mentor)
     if (!localStorage.token) {
       Swal.fire({
         icon: "error",
@@ -87,7 +88,7 @@ function RegisModalCard({ mentor }) {
   }
   return (
     <div>
-      {/* tombol "daftar sekarang" dari halaman detail mentor */}
+      {/* tombol "daftar sekarang"  */}
       <button className="btn btn-primary" onClick={handleModal}> <i className="bi bi-check2-square"></i> Daftar Mentorship <i
         className="bi bi-arrow-right"></i></button>
 
