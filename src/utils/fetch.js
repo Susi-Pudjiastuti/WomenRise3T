@@ -88,12 +88,15 @@ export async function GenerateMotivation() {
 
 export async function fetchScholarship() {
   try {
-    let endpoint = `http://localhost:3000/scholarships`;
+    let endpoint = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/scholarships`;
 
     // fetch
     const response = await axios({
       url: endpoint,
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
     });
 
     return response.data;
@@ -110,28 +113,29 @@ export async function fetchScholarship() {
 }
 
 export async function addScholarship({ input }) {
-  let endpoint = "http://localhost:3000/scholarships";
+  let endpoint =
+    "https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/scholarships";
 
   const { data } = await axios({
     url: endpoint,
     method: "POST",
     data: input,
-    // headers: {
-    //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgyLCJpYXQiOjE3Mjk2MDM0NzV9.XzpFnBkgaGizRuPoNWJkNReuPdez2ZIvQIczoilNK7g`,
-    // },
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
   });
   return data;
 }
 
 export async function deleteScholarship({ id }) {
-  let endpoint = `http://localhost:3000/scholarships/${id}`;
+  let endpoint = `https://indirect-rosalind-rasunasaid1-522f984c.koyeb.app/scholarships/${id}`;
 
   const { data } = await axios({
     url: endpoint,
     method: "DELETE",
-    // headers: {
-    //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgyLCJpYXQiOjE3Mjk2MDM0NzV9.XzpFnBkgaGizRuPoNWJkNReuPdez2ZIvQIczoilNK7g`,
-    // },
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
   });
   return data;
 }
