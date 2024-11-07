@@ -53,7 +53,7 @@ function Navbar() {
                         <a className="btn button-style-outline px-3 py-2" href="/Login-page/login.html">Log Out</a>
                     </div> */}
                         <div className="my-4 my-lg-0 d-flex gap-2 align-items-center">
-                            {localStorage.getItem('token') ? <a href='/profile'><img src={ava.avatar} className='rounded-circle object-fit-cover' style={{ width: '3rem', height: '3rem' }} /></a>
+                            {localStorage.getItem('token') ? <NavLink to='/profile'><img src={ava.avatar} className='rounded-circle object-fit-cover' style={{ width: '3rem', height: '3rem' }} /></NavLink>
                                 : <div className="my-4 my-lg-0 d-flex gap-2 align-items-center">
                                     <NavLink to="/signup" className="btn button-style-text">Sign Up</NavLink>
                                     <NavLink to="/login" className="btn button-style-navy px-3 py-2">Log In</NavLink>
