@@ -42,7 +42,7 @@ function CardScholarship({ item }) {
   return (
     <Col sm={1} md={3} >
       <a href={item?.linkBeasiswa} className="btn" target="_blank">
-        <Card style={{ width: '15rem', height: '23rem', background: item?.daerahKhusus === "Kuota khusus 3T" ? "#F6FBFD" : "#FFF" }}  >
+        <Card style={{ width: '15rem', height: '23rem', background: item?.daerahKhusus === "Kuota Khusus 3T" ? "#F6FBFD" : "#FFF" }}  >
           {user?.email === item?.email ? <CloseButton onClick={handleDelete} /> : ""}
           <Card.Img variant="top" src={item?.gambar} style={{ width: '10rem' }} className="mx-auto mt-2" />
           <Card.Body className="mx-auto text-center">
@@ -52,7 +52,7 @@ function CardScholarship({ item }) {
             </Card.Text>
             <div className='flex'>
               {!item?.status ? <Badge bg="secondary" className="me-2">expired</Badge> : <Badge bg="success" className="me-2">Active</Badge>}
-              {item?.daerahKhusus === "Kuota khusus 3T" ? <Badge bg="primary">Kuota khusus 3T</Badge> : <Badge bg="dark">Nasional</Badge>}
+              {item?.daerahKhusus === "Kuota Khusus 3T" ? <Badge bg="primary">Kuota khusus 3T</Badge> : <Badge bg="dark">Nasional</Badge>}
               {item?.approved ? <Badge bg="success"><i className="bi bi-check-circle"></i> WomenRise3T approved</Badge> : ""}
             </div>
             {item?.nama ? <small>By: {item?.nama}</small> : ""}
