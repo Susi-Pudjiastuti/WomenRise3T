@@ -42,7 +42,7 @@ function CardScholarship({ item }) {
   return (
     <Col sm={1} md={3} >
       <a href={item?.linkBeasiswa} className="btn" target="_blank">
-        <Card style={{ width: '15rem', height: '23rem', background: item?.daerahKhusus === "Kuota Khusus 3T" ? "#F6FBFD" : "#FFF" }}  >
+        <Card style={{ width: '15rem', height: '26rem', background: item?.daerahKhusus === "Kuota Khusus 3T" ? "#F6FBFD" : "#FFF" }}  >
           {user?.email === item?.email ? <CloseButton onClick={handleDelete} /> : ""}
           <Card.Img variant="top" src={item?.gambar} style={{ width: '10rem' }} className="mx-auto mt-2" />
           <Card.Body className="mx-auto text-center">
