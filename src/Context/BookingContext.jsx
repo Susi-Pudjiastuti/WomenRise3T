@@ -14,7 +14,7 @@ function BookingProvider({ children }) {
     //function untuk mengambil data booking user
     const getBookings = useCallback(async (mentorshipStatus) => {
         const token = localStorage.token;
-        console.log("token: " + token)
+        // console.log("token: " + token)
         setLoading(true)
         console.log(mentorshipStatus)
         if (!token) {
