@@ -94,9 +94,6 @@ export async function fetchScholarship() {
     const response = await axios({
       url: endpoint,
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
     });
 
     return response.data;
@@ -120,9 +117,6 @@ export async function addScholarship({ input }) {
     url: endpoint,
     method: "POST",
     data: input,
-    headers: {
-      Authorization: `Bearer ${localStorage.token}`,
-    },
   });
   return data;
 }
@@ -133,9 +127,6 @@ export async function deleteScholarship({ id }) {
   const { data } = await axios({
     url: endpoint,
     method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.token}`,
-    },
   });
   return data;
 }

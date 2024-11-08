@@ -21,7 +21,6 @@ const FormAdd = () => {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value })
-    console.log(name, value)
 
   }
 

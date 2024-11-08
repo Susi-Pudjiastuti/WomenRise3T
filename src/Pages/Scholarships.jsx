@@ -8,7 +8,7 @@ import Skeleton from 'react-loading-skeleton'
 const Scholarships = () => {
   const navigate = useNavigate()
   const { isLoading, data } = useQuery({
-    queryKey: ["scholarship"],
+    queryKey: ["scholarships"],
     queryFn: fetchScholarship
   })
   const scholarships = data?.data
