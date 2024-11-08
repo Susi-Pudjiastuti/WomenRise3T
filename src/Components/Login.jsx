@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Girl from '../assets/Mask-group-1.webp';
 import Logo from '../assets/Logo WomenRise3T.svg';
 import { Link } from 'react-router-dom';
+import { useUser } from '../Context/UserContext';
 
 
 const Login = () => {
@@ -16,6 +17,7 @@ const Login = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(false); // State untuk loading
     const navigate = useNavigate();
+    const { setUser } = useUser();
 
     // Function untuk handle login
     const handleSubmit = async (e) => {
@@ -38,7 +40,11 @@ const Login = () => {
 
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-
+            setUser({
+                email: response.data.user.email,
+                namaLengkap: response.data.user.namaLengkap,
+                asalDaerah: response.data.user.asalDaerah
+            });
 
             // Jika login berhasil
             if (response.status === 200) {
